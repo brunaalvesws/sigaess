@@ -26,11 +26,15 @@ export class ProfComponent implements OnInit {
    }
 
    logarProf(a: Professor): void {
-    if (this.profService.criar(a)) {
-      this.profs.push(a);
-      this.prof = new Professor();
+    if (this.profService.cpfNaoCadastrado(a.cpf)) {
+      alert("CPF inválido. Usuário não Cadastrado.")
     } else {
-      this.cpfduplicado = true;
+      if (this.profService.checksenha(a.cpf,a.senha)){
+        //tela de entrada
+        alert("Login efetuado! Seja bem vindo!")
+      } else {
+        alert("Senha inválida. Tente novamente.")
+      }
     }
   }
 

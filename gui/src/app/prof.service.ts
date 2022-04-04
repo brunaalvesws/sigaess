@@ -19,6 +19,10 @@ export class ProfService {
   cpfNaoCadastrado(cpf: string): boolean {
      return !this.profs.find(a => a.cpf == cpf);
   }
+
+  checksenha(cpf: string, senha: string): boolean {
+    return !this.profs.find(a => a.cpf == cpf && a.senha == senha);
+ }
   
   getProfs(): Professor[] {
     var result: Professor[] = [];
