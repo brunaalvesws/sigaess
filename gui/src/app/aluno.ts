@@ -1,9 +1,8 @@
 export class Aluno {
   nome: string;
   cpf: string;
-  email: string;
-  github_login: string;
-  metas: Map<string,string>;
+  dt_nasc: string;
+  senha: string;
 
   constructor() {
     this.clean();
@@ -12,26 +11,16 @@ export class Aluno {
   clean(): void {
     this.nome = "";
     this.cpf = "";
-    this.email = "";
-    this.github_login = "";
-    this.metas = new Map<string,string>();
+    this.dt_nasc = "";
+    this.senha = "";
   }
 
   clone(): Aluno {
     var aluno: Aluno = new Aluno();
     aluno.nome = this.nome;
     aluno.cpf = this.cpf;
-    aluno.email = this.email;
-    aluno.github_login = this.github_login;
-    aluno.metas = this.cloneMetas();
+    aluno.dt_nasc = this.dt_nasc;
+    aluno.senha = this.senha;
     return aluno;
-  }
-
-  cloneMetas(): Map<string,string> {
-    var metas: Map<string,string> = new Map<string,string>();
-    for (let key in this.metas) {
-      metas[key] = this.metas[key];
-    }
-    return metas;
   }
 }
