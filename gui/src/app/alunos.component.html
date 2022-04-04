@@ -1,11 +1,6 @@
 <html (mousemove)="onMove()">
 
-<table>
-<tr>
-   <td><label>Nome </label></td>
-   <td><input [(ngModel)]="aluno.nome" ></td>
-   <td><button (click)="criarAluno(aluno)">Adicionar</button></td>
-</tr>
+<table class="login">
 <tr>
    <td><label>CPF </label></td>
    <td><input [(ngModel)]="aluno.cpf" ></td>
@@ -14,27 +9,14 @@
    </td>
 </tr>
 <tr>
-   <td><label>e-mail </label></td>
-   <td><input [(ngModel)]="aluno.email" ></td>
+   <td><label>Senha </label></td>
+   <td><input [(ngModel)]="aluno.senha" ></td>
 </tr>
 <tr>
-   <td><label>Login Github </label></td>
-   <td><input [(ngModel)]="aluno.github_login" ></td>
+   <td><button class="btlogin" (click)="logarAluno(aluno)">Fazer Login</button></td>
 </tr>
-</table>
-
-<table>
-<tr *ngIf="alunos.length > 0">
-   <th>Nome</th>
-   <th>CPF</th>
-   <th>e-mail</th>
-   <th>Login Github</th>
-</tr>
-<tr *ngFor="let a of alunos">
-   <td>{{a.nome}}</td>
-   <td>{{a.cpf}}</td>
-   <td>{{a.email}}</td>
-   <td>{{a.github_login}}</td>
+<tr>
+   <td><button class="btcad" (click)="criarAluno(aluno)">Cadastrar</button></td>
 </tr>
 </table>
 
