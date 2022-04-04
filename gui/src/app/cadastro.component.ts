@@ -21,7 +21,9 @@ export class CadastroComponent implements OnInit {
      if (this.alunoService.criar(a)) {
        this.alunos.push(a);
        this.aluno = new Aluno();
+       alert("Cadastro realizado. Faça Login.")
      } else {
+       alert("Esse CPF já foi cadastrado. Tente Novamente")
        this.cpfduplicado = true;
      }
    }
