@@ -1,0 +1,38 @@
+<html (mousemove)="onMove()" ng-app="app">
+
+<h3 class="msg">Digite suas informações:</h3>
+
+<h4>Selecione o tipo de usuário:</h4>
+<body ng-controller="user as us">
+   <select name="usertype" ng-model="us.escolha">
+      <option value="prof">Professor</option>
+      <option value="aluno">Aluno</option>
+   </select>
+</body>
+
+<table class="cad">
+<tr>
+   <td><label>Nome</label></td>
+   <td><input [(ngModel)]="aluno.nome" ></td>
+</tr>
+<tr>
+   <td><label>CPF</label></td>
+   <td><input [(ngModel)]="aluno.cpf" ></td>
+   <td *ngIf="cpfduplicado">
+     Já existe um aluno com esse CPF
+   </td>
+</tr>
+<tr>
+   <td><label>Data de nascimento</label></td>
+   <td><input [(ngModel)]="aluno.dt_nasc" ></td>
+</tr>
+<tr>
+   <td><label>Senha</label></td>
+   <td><input [(ngModel)]="aluno.senha" ></td>
+</tr>
+</table>
+
+<button class="btcad" (click)="criarAluno(aluno)">Salvar</button>
+
+
+</html>
