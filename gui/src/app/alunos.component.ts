@@ -26,11 +26,15 @@ export class AlunosComponent implements OnInit {
    }
 
    logarAluno(a: Aluno): void {
-    if (this.alunoService.criar(a)) {
-      this.alunos.push(a);
-      this.aluno = new Aluno();
+    if (this.alunoService.cpfNaoCadastrado(a.cpf)) {
+      alert("CPF inválido. Usuário não Cadastrado.")
     } else {
-      this.cpfduplicado = true;
+      if (this.alunoService.checksenha(a.cpf,a.senha)){
+        //tela de entrada
+        alert("Login efetuado! Seja bem vindo!")
+      } else {
+        alert("Senha inválida. Tente novamente.")
+      }
     }
   }
 
