@@ -17,9 +17,15 @@
 <tr>
    <td><button class="btlogin" (click)="logarProf(prof)">Fazer Login</button></td>
 </tr>
-<tr>
-   <td><button class="btcad" (click)="criarProf(prof)">Cadastrar</button></td>
-</tr>
 </table>
 
+<nav>
+   <a routerLink="/cadastro">
+      <button class="btcad">Cadastrar</button>
+   </a>
+</nav>
+
+<router-outlet></router-outlet>
+
 </html>
+
