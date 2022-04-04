@@ -1,23 +1,39 @@
-th {
-  background-color: #3399ff;
-  color: #ffffff;
+.login{
+  margin-left:auto; 
+  margin-right:auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: aquamarine;
+  padding: 10px;
+  margin-top: 10%;
 }
 
-td, th {
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
+button:hover {
+  background-color: #cfd8dc;
 }
 
 tr:hover {
   background-color: #cce6ff;
 }
 
-.meta {
-  text-align: center;
-  width: 20px;
+.btcad{
+  align-self: center;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: rgb(44, 108, 247);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
 }
 
-.meta input {
+.btlogin{
+  align-self: center;
+  font-family: Arial;
+  background-color: rgb(241, 129, 38);
   border: none;
-  width: 40px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
 }

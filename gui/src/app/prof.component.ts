@@ -1,25 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Aluno } from './aluno';
-import { AlunoService } from './aluno.service';
+import { Professor } from './professor';
+import { ProfService } from './prof.service';
 
 @Component({
-  selector: 'metas',
-  templateUrl: './metas.component.html',
-  styleUrls: ['./metas.component.css']
+  selector: 'professores',
+  templateUrl: './prof.component.html',
+  styleUrls: ['./prof.component.css']
 })
-export class MetasComponent implements OnInit {
-   constructor(private alunoService: AlunoService) {}
+export class ProfComponent implements OnInit {
+   constructor(private profService: ProfService) {}
 
-   alunos: Aluno[];
+   prof: Professor = new Professor();
+   profs: Professor[];
+   cpfduplicado: boolean = false;
 
-   atualizarAluno(aluno: Aluno): void {
-      this.alunoService.atualizar(aluno);
+   criarProf(a: Professor): void {
+     if (this.profService.criar(a)) {
+       this.profs.push(a);
+       this.prof = new Professor();
+     } else {
+       this.cpfduplicado = true;
+     }
+   }
+
+   logarProf(a: Professor): void {
+    if (this.profService.criar(a)) {
+      this.profs.push(a);
+      this.prof = new Professor();
+    } else {
+      this.cpfduplicado = true;
+    }
+  }
+
+   onMove(): void {
+      this.cpfduplicado = false;
    }
 
    ngOnInit(): void {
-     this.alunos = this.alunoService.getAlunos();
-  }
+     this.profs = this.profService.getProfs();
+   }
 
 }
