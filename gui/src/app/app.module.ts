@@ -5,14 +5,15 @@ import { RouterModule }   from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MetasComponent } from './metas.component';
+import { ProfComponent } from './prof.component';
 import { AlunosComponent } from './alunos.component';
 import { AlunoService } from './aluno.service';
+import { ProfService } from './prof.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MetasComponent,
+    ProfComponent,
     AlunosComponent
   ],
   imports: [
@@ -21,8 +22,8 @@ import { AlunoService } from './aluno.service';
     FormsModule,
     RouterModule.forRoot([
       {
-        path: 'metas',
-        component: MetasComponent
+        path: 'professores',
+        component: ProfComponent
       },
       {
         path: 'alunos',
@@ -30,7 +31,7 @@ import { AlunoService } from './aluno.service';
       }
     ])
   ],
-  providers: [AlunoService],
+  providers: [AlunoService, ProfService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

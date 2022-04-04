@@ -1,30 +1,20 @@
-.alunos {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
-}
- 
-.alunos li {
-  cursor: pointer;
-  position: relative;
-  left: 0;
-  background-color: cyan;
-  margin: .5em;
-  padding: .3em 0;
-  height: 1.6em;
-  border-radius: 4px;
+.siga{
+  text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-button {
-  font-family: Arial;
-  background-color: green;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-  cursor: hand;
+.pag-alunos{
+  font-family: 'Courier New', Courier, monospace;
+  position:absolute;
+  left: 510px;
 }
-button:hover {
-  background-color: #cfd8dc;
+
+.pag-profs{
+  font-family: 'Courier New', Courier, monospace;
+  position:absolute;
+  left: 700px;
+}
+
+.texto{
+  text-align: center;
 }
