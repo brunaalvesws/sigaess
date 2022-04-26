@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Aluno } from '../aluno';
+import { Aluno } from '../../../../common/classes/aluno';
 import { AlunoService } from '../aluno.service';
 import { LoginService } from '../login.service';
 
@@ -40,4 +40,40 @@ export class AlunosComponent implements OnInit {
   ngOnInit(): void {
     this.alunos = this.alunoService.getAlunos();
   }
+}
+
+
+aluno: Aluno = new Aluno();
+alunos: Aluno[] = [];
+cpfduplicado: boolean = false;
+
+constructor(private alunoService: AlunoService) {}
+
+ criarAluno(a: Aluno): void {
+   this.alunoService.criar(a)
+          .subscribe(
+            ar => {
+              if (ar) {
+                this.alunos.push(ar);
+                this.aluno = new Aluno();
+              } else {
+                this.cpfduplicado = true;
+              } 
+            },
+            msg => { alert(msg.message); }
+          );
+} 
+
+onMove(): void {
+   this.cpfduplicado = false;
+}
+
+ ngOnInit(): void {
+   this.alunoService.getAlunos()
+         .subscribe(
+           as => { this.alunos = as; },
+           msg => { alert(msg.message); }
+          );
+ }
+
 }

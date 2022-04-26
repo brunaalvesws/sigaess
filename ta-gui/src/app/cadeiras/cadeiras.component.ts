@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { Aluno } from '../aluno';
+import { Aluno } from '../../../../common/classes/aluno';
 
-import { Cadeira } from '../cadeiras';
+import { Cadeira } from '../../../../common/classes/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
 import { LoginService } from '../login.service';
-import { Professor } from '../professor';
+import { Professor } from '../../../../common/classes/professor';
 
 @Component({  
   selector: 'cadeiras',

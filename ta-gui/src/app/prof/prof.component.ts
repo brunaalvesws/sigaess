@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Professor } from '../professor';
+import { Professor } from '../../../../common/classes/professor';
 import { ProfService } from '../prof.service';
 import { LoginService } from '../login.service';
 import { Router } from '@angular/router';

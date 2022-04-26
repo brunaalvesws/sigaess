@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Cadeira } from '../cadeiras';
+import { Cadeira } from '../../../../common/classes/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
 import { LoginService } from '../login.service';
-import { Professor } from '../professor';
+import { Professor } from '../../../../common/classes/professor';
 
 @Component({
   selector: 'app-criar-cadeira',

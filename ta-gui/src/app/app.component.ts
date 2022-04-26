@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { Aluno } from './aluno';
+import { Aluno } from '../../../common/classes/aluno';
 import { AlunoService } from './aluno.service';
-import { Cadeira } from './cadeiras';
+import { Cadeira } from '../../../common/classes/cadeiras';
 
 @Component({
   selector: 'app-root',

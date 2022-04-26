@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Aluno } from './aluno';
+import { Aluno } from '../../../common/classes/aluno';
 
-import { Professor } from './professor';
+import { Professor } from '../../../common/classes/professor';
 
 @Injectable()
 export class LoginService {
@@ -21,3 +21,14 @@ export class LoginService {
     return this.account;
   }
 }
+
+cpfNaoCadastrado(cpf: string): boolean {
+  return !this.alunos.find(a => a.cpf == cpf);
+}
+
+checksenha(cpf: string, senha: string): boolean {
+ return !this.alunos.find(a => a.cpf == cpf && a.senha == senha);
+}
+
+getAlunoCPFPass(cpf: string, senha: string): Aluno {
+ return this.alunos.find(a => a.cpf == cpf && a.senha == senha);
