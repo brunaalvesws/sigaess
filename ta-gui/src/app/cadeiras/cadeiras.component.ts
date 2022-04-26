@@ -4,7 +4,7 @@ import { Aluno } from '../../../../common/classes/aluno';
 
 import { Cadeira } from '../../../../common/classes/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
-import { LoginService } from '../login.service';
+import { LoginService } from '../../../../common/services/login.service';
 import { Professor } from '../../../../common/classes/professor';
 
 @Component({  

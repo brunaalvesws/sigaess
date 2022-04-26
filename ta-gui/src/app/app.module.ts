@@ -5,7 +5,6 @@ import { RouterModule }   from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MetasComponent } from './metas/metas.component';
 import { AlunosComponent } from './alunos/alunos.component';
 import { AlunoService } from './aluno.service';
 import { CadeirasComponent } from './cadeiras/cadeiras.component';
@@ -14,12 +13,11 @@ import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
 import { ProfComponent } from './prof/prof.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ProfService } from './prof.service';
-import { LoginService } from './login.service';
+import { LoginService } from '../../../common/services/login.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MetasComponent,
     ProfComponent,
     AlunosComponent,
     CadastroComponent,
@@ -42,10 +40,6 @@ import { LoginService } from './login.service';
       {
         path: 'cadastro',
         component: CadastroComponent
-      },
-      {
-        path: 'metas',
-        component: MetasComponent
       },
       {
         path: "cadeiras",

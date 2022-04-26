@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cadeira } from '../../../../common/classes/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
-import { LoginService } from '../login.service';
+import { LoginService } from '../../../../common/services/login.service';
 import { Professor } from '../../../../common/classes/professor';
 
 @Component({
