@@ -1,0 +1,26 @@
+.cadeiras {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+
+.tabela_cadeiras table, .tabela_cadeiras th, .tabela_cadeiras td {
+  border: 1px solid black;
+}
+
+.cadeiras {
+  margin: 0 0 2em 0;
+  list-style-type: none;
+  padding: 0;
+  width: 15em;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
+
+.horario_selecionado {
+  background-color:brown;
+  height: 100%;
+}
