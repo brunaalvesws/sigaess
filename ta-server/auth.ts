@@ -1,3 +1,6 @@
+import { LoginService } from '../common/services/login.service';
+import { getAuth, signInWithCustomToken } from "firebase/auth";
+
 const firebaseConfig = {
     apiKey: "AIzaSyCnbHVORHVXbB6jwlzFdOYoYcZxBKMoNOs",
     authDomain: "siga-ess.firebaseapp.com",
@@ -16,20 +19,29 @@ databaseURL: 'https://siga-ess.firebaseio.com'
 });
 
 var firebaseAdmin = require('firebase-admin');
-var express = require('express');
-var router = express.Router();
-var authenticate = require('my-authentication-library');
+var authenticate = new LoginService();
 
-router.post('/token', function(request, response, next) {
-  if(authenticate(request)){
-    firebaseAdmin.auth().createCustomToken(request.body.login).then(function(token){
-      response.json({ token: token });
-    })
-    .catch(function(error) {
-      res.status(500).json({error: "Error during token creation"});
-    });
-  } else {
-    res.status(401).json({error: "Invalid login or password"});
-  }
-});
+@Injectable()
+export class Auth {
+
+    criarToken(cpf: string): string {
+        firebaseAdmin.auth().createCustomToken(cpf).then((token) => {
+            return token;
+        })
+        .catch(error) {
+            return error.message;
+        });
+    }
+
+    authLogin(token: string): void {
+        const auth = getAuth();
+        signInWithCustomToken(auth, token)
+        .then((userCredential) => {
+        const user = userCredential.user;
+        })
+        .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        });
+}
 module.exports = router;

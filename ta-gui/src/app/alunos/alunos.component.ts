@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 import { Aluno } from '../../../../common/classes/aluno';
 import { AlunoService } from '../aluno.service';
-import { LoginService } from '../login.service';
+import { LoginService } from '../../../../common/services/login.service';
 
 @Component({  
   selector: 'app-root',

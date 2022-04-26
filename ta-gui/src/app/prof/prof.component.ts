@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { Professor } from '../../../../common/classes/professor';
 import { ProfService } from '../prof.service';
-import { LoginService } from '../login.service';
+import { LoginService } from '../../../../common/services/login.service';
 import { Router } from '@angular/router';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Aluno } from '../../../common/classes/aluno';
+import { Aluno } from '../classes/aluno';
 
-import { Professor } from '../../../common/classes/professor';
+import { Professor } from '../classes/professor';
 
 @Injectable()
 export class LoginService {
@@ -20,6 +20,8 @@ export class LoginService {
   getAccount(): Professor | Aluno | null {
     return this.account;
   }
+
+  
 }
 
 cpfNaoCadastrado(cpf: string): boolean {
