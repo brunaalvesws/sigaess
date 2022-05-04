@@ -19,4 +19,20 @@ export class AlunoService {
                 map( res => {if (res.success) {return aluno;} else {return null;}} )
               ); 
   }
+
+  logar(cpf: string, senha: string): boolean {
+    return this.http.post<any>(this.sigaURL + "/alunos", cpf, senha, {headers: this.headers})
+             .pipe( 
+                retry(2),
+                map( res => {if (res.success) {return true;} else {return null;}} )
+              ); 
+  }
+
+  getAlunos(){
+    return this.http.get()
+                    .pipe( 
+                      retry(2),
+                      map( res => {if (res.success) {return true;} else {return null;}} )
+                    ); 
+  }
 }
