@@ -3,11 +3,13 @@ import express = require('express');
 import { Aluno } from '../common/aluno';
 import { CadastroDeAlunos } from './cadastrodealunos';
 import { CadastroDeProfessor } from './cadastrodeprofs';
+import { LoginService } from '../common/services/login.service';
 
 var taserver = express();
 
 var cadastroaluno: CadastroDeAlunos = new CadastroDeAlunos();
 var cadastroprof: CadastroDeProfessor = new CadastroDeProfessor();
+var loginService: LoginService = new LoginService(cadastroaluno, cadastroprof);
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
     res.header('Access-Control-Allow-Origin', "*");
@@ -28,7 +30,7 @@ taserver.get('/professores', function (req: express.Request, res: express.Respon
   res.send(JSON.stringify(cadastroprof.getProfessores()));
 })
 
-taserver.post('/aluno', function (req: express.Request, res: express.Response) {
+taserver.post('/cadastro', function (req: express.Request, res: express.Response) {
   var aluno: Aluno = <Aluno> req.body; //verificar se é mesmo Aluno!
   aluno = cadastroaluno.cadastrar(aluno);
   if (aluno) {
@@ -38,14 +40,33 @@ taserver.post('/aluno', function (req: express.Request, res: express.Response) {
   }
 })
 
-taserver.put('/aluno', function (req: express.Request, res: express.Response) {
-  var aluno: Aluno = <Aluno> req.body;
-  aluno = cadastro.atualizar(aluno);
-  if (aluno) {
-    res.send({"success": "O aluno foi atualizado com sucesso"});
+taserver.post('/alunos', function (req: express.Request, res: express.Response) {
+  var cpf: string = req.body.cpf; 
+  var senha: string = req.body.senha; 
+  var login: string;
+  if (login == "success") {
+    res.send({"success": "Login realizado com sucesso"});
+  } else if (login == ("cpferror") {
+    res.send({"failure": "CPF inválido"});
   } else {
-    res.send({"failure": "O aluno não pode ser atualizado"});
+    res.send({"failure": "Senha inválida. Tente novamente."})
   }
+})
+
+taserver.post('/professores', function (req: express.Request, res: express.Response) {
+  var cpf: string = req.body.cpf; 
+  var senha: string = req.body.senha; 
+  var login: string;
+  login = loginService.loginProf(cpf,senha);
+  if (login == "success") {
+    res.send({"success": "Login realizado com sucesso"});
+  } else if (login == ("cpferror") {
+    res.send({"failure": "CPF inválido"});
+  } else {
+    res.send({"failure": "Senha inválida. Tente novamente."})
+  }
+})
+
 })
 
 var server = taserver.listen(3000, function () {
