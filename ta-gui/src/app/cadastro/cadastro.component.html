@@ -18,9 +18,6 @@
 <tr>
    <td><label>CPF</label></td>
    <td><input [(ngModel)]="pessoa.cpf" ></td>
-   <td *ngIf="cpfduplicado">
-     Já existe um aluno com esse CPF
-   </td>
 </tr>
 <tr>
    <td><label>Data de nascimento</label></td>
@@ -32,7 +29,7 @@
 </tr>
 <tr>
    <td><label>Senha</label></td>
-   <td><input [(ngModel)]="pessoa.senha" ></td>
+   <td><input type="password" minlength="8" required [(ngModel)]="pessoa.senha" ></td>
 </tr>
 </table>
 

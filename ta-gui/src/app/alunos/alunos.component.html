@@ -5,17 +5,14 @@
 <table class="login">
 <tr>
    <td><label>CPF </label></td>
-   <td><input [(ngModel)]="aluno.cpf" ></td>
-   <td *ngIf="cpfduplicado">
-     Já existe um aluno com esse CPF
-   </td>
+   <td><input [(ngModel)]="cpf" ></td>
 </tr>
 <tr>
    <td><label>Senha </label></td>
-   <td><input [(ngModel)]="aluno.senha" ></td>
+   <td><input type="password" [(ngModel)]="senha" ></td>
 </tr>
 <tr>
-   <td><button class="btlogin" (click)="logarAluno(aluno)">Fazer Login</button></td>
+   <td><button class="btlogin" (click)="logarAluno(cpf, senha)">Fazer Login</button></td>
 </tr>
 </table>
 
