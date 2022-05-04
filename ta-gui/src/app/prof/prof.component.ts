@@ -16,26 +16,19 @@ export class ProfComponent implements OnInit {
 
    prof: Professor = new Professor();
    profs: Professor[];
-   cpfduplicado: boolean = false;
 
-  logarProf(a: Professor): void {
-    if (this.profService.cpfNaoCadastrado(a.cpf)) {
-      alert("CPF inválido. Usuário não Cadastrado.");
+   logarProf(a: Professor): void {
+    if (this.loginService.loginProf(a.cpf, a.senha) == "cpferror") {
+      alert("CPF inválido")
     } else {
-      if (this.profService.checksenha(a.cpf,a.senha)){
-        alert("Senha inválida. Tente novamente.");
+      if (this.loginService.loginProf(a.cpf, a.senha) == "passworderror"){
+        alert("Senha inválida. Tente novamente.")
       } else {
-        this.loginService.login(this.profService.getProfCPFPass(a.cpf, a.senha), "Professor");
-        //tela de entrada
         alert("Login efetuado! Seja bem vindo!");
         this._route.navigate(['cadeiras']);
       }
     }
   }
-
-   onMove(): void {
-      this.cpfduplicado = false;
-   }
 
    ngOnInit(): void {
      this.profs = this.profService.getProfs();

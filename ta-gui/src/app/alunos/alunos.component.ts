@@ -16,36 +16,26 @@ export class AlunosComponent implements OnInit {
 
   aluno: Aluno = new Aluno();
   alunos: Aluno[];
-  cpfduplicado: boolean = false;
 
-  logarAluno(a: Aluno): void {
-    if (this.alunoService.cpfNaoCadastrado(a.cpf)) {
-      alert("CPF inválido. Usuário não Cadastrado.")
+  logarAluno(cpf: string, senha: string): void {
+    if (this.loginService.loginAluno(cpf, senha) == "cpferror") {
+      alert("CPF inválido")
     } else {
-      if (this.alunoService.checksenha(a.cpf,a.senha)){
+      if (this.loginService.loginAluno(cpf, senha) == "passworderror"){
         alert("Senha inválida. Tente novamente.")
       } else {
-        this.loginService.login(this.alunoService.getAlunoCPFPass(a.cpf, a.senha), "Aluno");
-        //tela de entrada
         alert("Login efetuado! Seja bem vindo!");
         this._route.navigate(['cadeiras']);
       }
     }
   }
   
-  onMove(): void {
-    this.cpfduplicado = false;
-  }
-
   ngOnInit(): void {
-    this.alunos = this.alunoService.getAlunos();
+    this.alunos = this.alunoService.getAlunos(); //achar de onde vem o get
   }
 }
 
 
-aluno: Aluno = new Aluno();
-alunos: Aluno[] = [];
-cpfduplicado: boolean = false;
 
 constructor(private alunoService: AlunoService) {}
 
@@ -64,9 +54,6 @@ constructor(private alunoService: AlunoService) {}
           );
 } 
 
-onMove(): void {
-   this.cpfduplicado = false;
-}
 
  ngOnInit(): void {
    this.alunoService.getAlunos()
