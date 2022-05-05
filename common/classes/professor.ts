@@ -1,3 +1,5 @@
+import { Pessoa } from './pessoa'
+
 export class Professor {
   nome: string;
   cpf: string;
@@ -17,7 +19,7 @@ export class Professor {
     this.email = "";
   }
 
-  clone(): Professor {
+  clone(a: Pessoa): Professor {
     var professor: Professor = new Professor();
     professor.nome = this.nome;
     professor.cpf = this.cpf;
@@ -25,5 +27,13 @@ export class Professor {
     professor.senha = this.senha;
     professor.email = this.email;
     return professor;
+  }
+
+  copyFrom(from: Professor): void {
+    this.nome = from.nome;
+    this.cpf = from.cpf;
+    this.email = from.email;
+    this.dt_nasc = from.dt_nasc;
+    this.senha = from.senha;
   }
 }
