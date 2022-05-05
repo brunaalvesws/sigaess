@@ -34,7 +34,7 @@ export class CadastroComponent implements OnInit {
                   } 
                 },
                 msg => { alert(msg.message); }
-              );
+              ); 
     } else if (typeAccount == "prof") {
       var professor = new Professor();
       professor.nome = this.aluno.nome;

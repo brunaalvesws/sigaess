@@ -9,6 +9,11 @@ var taserver = express();
 var alunos: CadastroDeAlunos = new CadastroDeAlunos();
 
 taserver.use(bodyParser.json());
+taserver.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", 'http://localhost:4200'); 
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 taserver.get('/alunos', function (req, res) {
   var aluno: string = JSON.stringify(alunos.getAlunos());
