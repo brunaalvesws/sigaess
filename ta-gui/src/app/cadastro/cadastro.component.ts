@@ -13,22 +13,27 @@ import { Professor } from '../../../../common/classes/professor';
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.css']
 })
-export class CadastroComponent implements OnInit {
+export class CadastroComponent {
    
   constructor(private _route: Router, private alunoService: AlunoService, private profService: ProfService) {}
 
+  pessoa: Pessoa = new Pessoa();
   typeAccount: string;
 
   criarPessoa(a: Pessoa, typeAccount: string): void {
     if (typeAccount == "aluno") {
-      if (this.alunoService.criar(a)) {
+      var aluno = new Aluno();
+      aluno = aluno.clone(a);
+      if (this.alunoService.criar(aluno)) {
         alert("Cadastro realizado. Faça Login.")
         this._route.navigate(['alunos']);
       } else {
         alert("Esse CPF já foi cadastrado. Tente Novamente")
       }
     } else if (typeAccount == "prof") {
-      if (this.profService.criar(a)) {
+      var prof = new Professor();
+      prof = prof.clone(a);
+      if (this.profService.criar(prof)) {
         alert("Cadastro realizado. Faça Login.")
         this._route.navigate(['professores']);
       } else {
