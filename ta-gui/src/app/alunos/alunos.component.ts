@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { Observable } from 'rxjs';
 import { Aluno } from '../../../../common/classes/aluno';
 import { AlunoService } from '../aluno.service';
-import { LoginService } from '../../../../common/services/login.service';
+
 
 @Component({  
   selector: 'app-root',
@@ -12,21 +12,17 @@ import { LoginService } from '../../../../common/services/login.service';
   styleUrls: ['./alunos.component.css']
 })
 export class AlunosComponent implements OnInit {
-  constructor(private _route: Router, private alunoService: AlunoService, private loginService: LoginService) {}
+  constructor(private _route: Router, private alunoService: AlunoService) {}
 
   aluno: Aluno = new Aluno();
-  alunos: Aluno[];
+  alunos: Observable<Aluno[]>;
 
-  logarAluno(cpf: string, senha: string): void {
-    if (this.loginService.loginAluno(cpf, senha) == "cpferror") {
-      alert("CPF inválido")
+  logarAluno(a: Aluno): void {
+    if (this.alunoService.logar(a)) {
+      alert("Login Efetuado. Seja bem vindo!")
+      this._route.navigate(['cadeiras']);
     } else {
-      if (this.loginService.loginAluno(cpf, senha) == "passworderror"){
-        alert("Senha inválida. Tente novamente.")
-      } else {
-        alert("Login efetuado! Seja bem vindo!");
-        this._route.navigate(['cadeiras']);
-      }
+      alert("Senha inválida. Tente novamente.")
     }
   }
   
@@ -37,7 +33,7 @@ export class AlunosComponent implements OnInit {
 
 
 
-constructor(private alunoService: AlunoService) {}
+/*constructor(private alunoService: AlunoService) {}
 
  criarAluno(a: Aluno): void {
    this.alunoService.criar(a)
@@ -63,4 +59,4 @@ constructor(private alunoService: AlunoService) {}
           );
  }
 
-}
+} */

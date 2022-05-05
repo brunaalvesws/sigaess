@@ -12,27 +12,26 @@ export class AlunoService {
 
   constructor(private http: HttpClient) {}
 
-  criar(aluno: Aluno): Observable<Aluno> {
+  criar(aluno: Aluno): Observable<boolean> {
     return this.http.post<any>(this.sigaURL + "/cadastro", aluno, {headers: this.headers})
-             .pipe( 
-                retry(2),
-                map( res => {if (res.success) {return aluno;} else {return null;}} )
-              ); 
-  }
-
-  logar(cpf: string, senha: string): boolean {
-    return this.http.post<any>(this.sigaURL + "/alunos", cpf, senha, {headers: this.headers})
              .pipe( 
                 retry(2),
                 map( res => {if (res.success) {return true;} else {return null;}} )
               ); 
   }
 
-  getAlunos(){
-    return this.http.get()
-                    .pipe( 
-                      retry(2),
-                      map( res => {if (res.success) {return true;} else {return null;}} )
-                    ); 
+  logar(aluno: Aluno): Observable<boolean> {
+    return this.http.post<any>(this.sigaURL + "/login", aluno, {headers: this.headers})
+             .pipe( 
+                retry(2),
+                map( res => {if (res.success) {return true;} else {return false;}} )
+              ); 
+  }
+
+  getAlunos(): Observable<Aluno[]> {
+    return this.http.get<Aluno[]>(this.sigaURL + "/alunos")
+      .pipe(
+          retry(2)
+      );
   }
 }
