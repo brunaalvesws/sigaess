@@ -1,4 +1,4 @@
-import { Aluno } from '../common/aluno';
+import { Aluno } from '../common/classes/aluno';
 
 export class CadastroDeAlunos {
    alunos: Aluno[] = [];

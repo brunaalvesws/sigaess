@@ -1,4 +1,4 @@
-import { Professor } from '../common/professor';
+import { Professor } from '../common/classes/professor';
 
 export class CadastroDeProfessor {
    professores: Professor[] = [];

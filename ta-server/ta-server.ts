@@ -1,9 +1,9 @@
 import express = require('express');
 
-import { Aluno } from '../common/aluno';
+import { Aluno } from '../common/classes/aluno';
 import { CadastroDeAlunos } from './cadastrodealunos';
 import { CadastroDeProfessor } from './cadastrodeprofs';
-import { LoginService } from '../common/services/login.service';
+import { LoginService } from './login.service';
 
 var taserver = express();
 
@@ -40,33 +40,18 @@ taserver.post('/cadastro', function (req: express.Request, res: express.Response
   }
 })
 
-taserver.post('/alunos', function (req: express.Request, res: express.Response) {
+taserver.post('/login', function (req: express.Request, res: express.Response) {
   var cpf: string = req.body.cpf; 
   var senha: string = req.body.senha; 
   var login: string;
+  login = loginService.loginAluno(cpf, senha)
   if (login == "success") {
     res.send({"success": "Login realizado com sucesso"});
-  } else if (login == ("cpferror") {
+  } else if (login == ("cpferror")) {
     res.send({"failure": "CPF inválido"});
   } else {
     res.send({"failure": "Senha inválida. Tente novamente."})
   }
-})
-
-taserver.post('/professores', function (req: express.Request, res: express.Response) {
-  var cpf: string = req.body.cpf; 
-  var senha: string = req.body.senha; 
-  var login: string;
-  login = loginService.loginProf(cpf,senha);
-  if (login == "success") {
-    res.send({"success": "Login realizado com sucesso"});
-  } else if (login == ("cpferror") {
-    res.send({"failure": "CPF inválido"});
-  } else {
-    res.send({"failure": "Senha inválida. Tente novamente."})
-  }
-})
-
 })
 
 var server = taserver.listen(3000, function () {
