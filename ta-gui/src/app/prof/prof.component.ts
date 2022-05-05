@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-
+import { Observable } from 'rxjs';
 import { Professor } from '../../../../common/classes/professor';
 import { ProfService } from '../prof.service';
-import { LoginService } from '../../../../common/services/login.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,21 +11,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./prof.component.css']
 })
 export class ProfComponent implements OnInit {
-   constructor(private _route: Router, private profService: ProfService, private loginService: LoginService) {}
+   constructor(private _route: Router, private profService: ProfService) {}
 
    prof: Professor = new Professor();
-   profs: Professor[];
+   profs: Observable<Professor[]>;
 
    logarProf(a: Professor): void {
-    if (this.loginService.loginProf(a.cpf, a.senha) == "cpferror") {
-      alert("CPF inválido")
+    if (this.profService.logar(a)) {
+      alert("Login efetuado! Seja bem vindo!");
+      this._route.navigate(['cadeiras']);
     } else {
-      if (this.loginService.loginProf(a.cpf, a.senha) == "passworderror"){
-        alert("Senha inválida. Tente novamente.")
-      } else {
-        alert("Login efetuado! Seja bem vindo!");
-        this._route.navigate(['cadeiras']);
-      }
+      alert("Credenciais inválidas. Tente novamente.")
     }
   }
 

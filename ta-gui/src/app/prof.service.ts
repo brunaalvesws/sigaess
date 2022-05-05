@@ -19,19 +19,18 @@ export class ProfService {
               ); 
   }
 
-  logar(cpf: string, senha: string): boolean {
-    return this.http.post<any>(this.sigaURL + "/professores", cpf, senha, {headers: this.headers})
+  logar(prof: Professor): Observable<boolean> {
+    return this.http.post<any>(this.sigaURL + "/login", prof, {headers: this.headers})
              .pipe( 
                 retry(2),
-                map( res => {if (res.success) {return true;} else {return null;}} )
+                map( res => {if (res.success) {return true;} else {return false;}} )
               ); 
   }
 
-  getProfs(){
-    return this.http.get()
-                    .pipe( 
-                      retry(2),
-                      map( res => {if (res.success) {return true;} else {return null;}} )
-                    ); 
+  getProfs(): Observable<Professor[]> {
+    return this.http.get<Professor[]>(this.sigaURL + "/professores")
+      .pipe(
+          retry(2)
+      );
   }
 }
