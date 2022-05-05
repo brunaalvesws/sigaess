@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule }   from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,7 +14,6 @@ import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
 import { ProfComponent } from './prof/prof.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ProfService } from './prof.service';
-import { LoginService } from '../../../common/services/login.service';
 
 @NgModule({
   declarations: [
@@ -28,6 +28,7 @@ import { LoginService } from '../../../common/services/login.service';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     RouterModule.forRoot([
       {
         path: 'professores',
@@ -51,7 +52,7 @@ import { LoginService } from '../../../common/services/login.service';
       }
     ])
   ],
-  providers: [AlunoService, ProfService, CadeiraService, LoginService],
+  providers: [AlunoService, ProfService, CadeiraService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -11,5 +11,4 @@ import { Cadeira } from '../../../common/classes/cadeiras';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private alunoService: AlunoService) {}
 }
