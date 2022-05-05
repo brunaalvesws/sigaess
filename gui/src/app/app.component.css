@@ -1,0 +1,20 @@
+.siga{
+  text-align: center;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.pag-alunos{
+  font-family: 'Courier New', Courier, monospace;
+  position:absolute;
+  left: 510px;
+}
+
+.pag-profs{
+  font-family: 'Courier New', Courier, monospace;
+  position:absolute;
+  left: 700px;
+}
+
+.texto{
+  text-align: center;
+}

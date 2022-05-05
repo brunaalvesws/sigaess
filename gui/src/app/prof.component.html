@@ -1,0 +1,31 @@
+<html (mousemove)="onMove()">
+
+<h3 class="msg">Bem vindo, professor!</h3>
+
+<table class="login">
+<tr>
+   <td><label>CPF </label></td>
+   <td><input [(ngModel)]="prof.cpf" ></td>
+   <td *ngIf="cpfduplicado">
+     Já existe um prof com esse CPF
+   </td>
+</tr>
+<tr>
+   <td><label>Senha </label></td>
+   <td><input [(ngModel)]="prof.senha" ></td>
+</tr>
+<tr>
+   <td><button class="btlogin" (click)="logarProf(prof)">Fazer Login</button></td>
+</tr>
+</table>
+
+<nav>
+   <a routerLink="/cadastro">
+      <button class="btcad">Cadastrar</button>
+   </a>
+</nav>
+
+<router-outlet></router-outlet>
+
+</html>
+

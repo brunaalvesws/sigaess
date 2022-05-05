@@ -1,0 +1,37 @@
+.cad{
+  margin-left:auto; 
+  margin-right:auto;
+  background-color: rgb(228, 179, 243);
+  padding: 10px;
+  margin-top: 8%;
+}
+
+.msg{
+  text-align: center;
+  margin-top: 5%;
+}
+
+
+button:hover {
+  background-color: #cfd8dc;
+}
+
+
+.btcad{
+  margin-left: 46%;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: rgb(44, 108, 247);
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  cursor: hand;
+}
+
+body{
+  margin-left: 46%;
+}
+
+h4{
+  text-align: center;
+}
