@@ -16,7 +16,7 @@ export class AlunoService {
     return this.http.post<any>(this.sigaURL + "/cadastro", aluno, {headers: this.headers})
              .pipe( 
                 retry(2),
-                map( res => {if (res.success) {return true;} else {return null;}} )
+                map( res => {if (res.success) {return true;} else {return false;}} )
               ); 
   }
 

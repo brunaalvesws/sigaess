@@ -19,7 +19,7 @@ export class LoginService {
         this.type = "aluno"
         this.cpf = cpf
         return "success"
-        //chamar o firebase
+        //chamar o firebase para o cpf
       } else {
         return "passworderror"
       }
@@ -34,7 +34,7 @@ export class LoginService {
         this.type = "professor"
         this.cpf = cpf
         return "success"
-        //chamar o firebase
+        //chamar o firebase para o cpf
       } else {
         return "passworderror"
       }

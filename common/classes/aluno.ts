@@ -21,11 +21,11 @@ export class Aluno {
 
   clone(a: Pessoa): Aluno {
     var aluno: Aluno = new Aluno();
-    aluno.nome = this.nome;
-    aluno.cpf = this.cpf;
-    aluno.email = this.email;
-    aluno.dt_nasc = this.dt_nasc;
-    aluno.senha = this.senha;
+    aluno.nome = a.nome;
+    aluno.cpf = a.cpf;
+    aluno.email = a.email;
+    aluno.dt_nasc = a.dt_nasc;
+    aluno.senha = a.senha;
     return aluno;
   }
 

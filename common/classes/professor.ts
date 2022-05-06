@@ -21,11 +21,11 @@ export class Professor {
 
   clone(a: Pessoa): Professor {
     var professor: Professor = new Professor();
-    professor.nome = this.nome;
-    professor.cpf = this.cpf;
-    professor.dt_nasc = this.dt_nasc;
-    professor.senha = this.senha;
-    professor.email = this.email;
+    professor.nome = a.nome;
+    professor.cpf = a.cpf;
+    professor.dt_nasc = a.dt_nasc;
+    professor.senha = a.senha;
+    professor.email = a.email;
     return professor;
   }
 
