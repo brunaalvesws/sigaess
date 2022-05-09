@@ -6,11 +6,14 @@ export class Pessoa {
   role: string;
   horarios: Map<string, Map<number, string>>;
 
-  constructor (uid: string = "",
-                name: string = "",
-                email: string = "",
-                role: string = "",
-                horarios: Map<string, Map<number, string>> = new Map<string, Map<number, string>>()) {
+  constructor (
+      uid: string = "",
+      name: string = "",
+      email: string = "",
+      role: string = "",
+      horarios: Map<string, Map<number, string>> = new Map<string, Map<number, string>>()
+    ) {
+      
     this.uid = uid;
     this.name = name;
     this.email = email;

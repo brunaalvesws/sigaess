@@ -88,7 +88,7 @@ toFirestore(person: Pessoa): object {
     'name': person.name,
     'email': person.email,
     'role': person.role,
-    'horarios': person.horarios
+    'horarios': JSON.stringify(person.horarios)
   };
 }
 
