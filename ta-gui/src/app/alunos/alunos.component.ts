@@ -18,6 +18,7 @@ export class AlunosComponent implements OnInit {
   async logarAluno(a: Pessoa): Promise<void> {
     var result = this.pessoaService.login(a.email, a.senha); 
     if (await result === 'success') {
+      await this.pessoaService.getPessoaWithEmail(a.email)
       alert("Login efetuado! Seja bem vindo!");
       this._route.navigate(['cadeiras']);
     } else {

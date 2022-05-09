@@ -4,6 +4,7 @@ import { Pessoa } from '../../../common/pessoa';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "@angular/fire/auth";
 import { Firestore, doc, getDoc, collection, addDoc} from '@angular/fire/firestore';
+import { map, Observable, retry } from 'rxjs';
 
 
 @Injectable({
@@ -22,12 +23,25 @@ export class PessoaService {
     await createUserWithEmailAndPassword(this.auth, a.email, a.senha).then(res => {
         result = 'success';
         this.post(a);
+        this.http.post<any>(this.taURL + "/aluno", a, {headers: this.headers})
+          .pipe( 
+            retry(2),
+            map( res => {if (res.success) {return res} else {return null}} )
+          ).subscribe(
+            ar => {
+              if (ar) {
+
+              } else {
+
+              } 
+            },
+            msg => {  }
+          );
       })
       .catch(err => {
         console.log('deu erro');
         result = err.message;
       });
-    console.log(result);
     return result;
   }
 
@@ -59,21 +73,44 @@ export class PessoaService {
       return result;
   }
 
+  getPessoaWithEmail(email: string): Promise<Pessoa[]> {
+    var aux = this.http.get<Pessoa[]>(this.taURL + "/alunos")
+    .pipe(
+        retry(2)
+    )
+    aux.subscribe(
+      ar => {
+        if (ar) {
+          for (let p of ar) {
+            if (p.email === email) {
+              var pessoa = new Pessoa();
+              pessoa.copyFrom(p);
+              this.account = pessoa;
+              break
+            }
+          }
+        }
+      },
+      msg => { alert(msg.message); }
+    );
+    return aux.toPromise()
+  } 
+
   post (person: Pessoa) {
-      var data = this.toFirestore(person)
-      addDoc(collection(this.db,'pessoa'), data).then(() => console.log("Data successfully stored"));
+    var data = this.toFirestore(person)
+    addDoc(collection(this.db,'pessoa'), data).then(() => console.log("Data successfully stored"));
   }
 
   async get (person)  { 
-      var data;
-      const pessoaref = doc(this.db,'pessoa',person.uid);
-      const docSnap = await getDoc(pessoaref);
-      if (docSnap.exists()){
-          data = this.fromFirestore(docSnap.data());
-          return data;
-      } else {
-          return 'fail'
-      }
+    var data;
+    const pessoaref = doc(this.db,'pessoa',person.uid);
+    const docSnap = await getDoc(pessoaref);
+    if (docSnap.exists()){
+        data = this.fromFirestore(docSnap.data());
+        return data;
+    } else {
+        return 'fail'
+    }
   }
 
   toFirestore(person: Pessoa): object {

@@ -29,6 +29,7 @@ taserver.get('/alunos', function (req, res) {
 })
 
 taserver.post('/aluno', function (req: express.Request, res: express.Response) {
+  console.log("I received a /aluno post")
   var aluno: Pessoa = <Pessoa> req.body; //verificar se é mesmo Aluno!
   aluno = alunos.criar(aluno);
   if (aluno) {
