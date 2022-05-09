@@ -30,6 +30,7 @@ button:hover {
   cursor: hand;
 }
 
+
 .btlogin{
   font-family: Arial;
   background-color: rgb(241, 129, 38);
@@ -38,4 +39,12 @@ button:hover {
   border-radius: 4px;
   cursor: pointer;
   cursor: hand;
+
+.texto{
+  text-align: center;
+}
+
+.top-header {
+  display: flex;
+  justify-content: space-around;
 }

@@ -18,7 +18,7 @@
             <option value="" disabled selected>
                 Selecione uma Cadeira
             </option>
-            <option *ngFor="let d of allCadeiras" value={{d.nome_disciplina}}>{{d.nome_disciplina}} </option>
+            <option *ngFor="let d of userCadeiras" value={{d.nome_disciplina}}>{{d.nome_disciplina}} </option>
           </select>
         </div>
         <button class="btn waves-effect waves-light" (click)="loadCadeira(nomeCadeira)" type="submit">Ver Informações</button>
@@ -78,7 +78,6 @@
       $('select').formSelect();
     });
   </script>
-
 
   <!-- Compiled and minified JavaScript -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>

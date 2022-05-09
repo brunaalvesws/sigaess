@@ -11,3 +11,8 @@ table, th, td {
 table {
   padding-bottom: 15px;
 }
+
+.all {
+  padding-left: 20%;
+  width: 80%;
+}

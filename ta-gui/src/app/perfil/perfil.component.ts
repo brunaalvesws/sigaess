@@ -26,8 +26,8 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     //this.cadeiras = this.cadeirasService.getCadeirasOfUser(); //uma função que retorna um array de cadeiras contendo
-    this.accountType = this.loginService.getType();//firebase           //os objetos cadeira que o aluno tá matriculado
-    this.account = this.loginService.getAccount();//firebase            //ou que o professor leciona (atributo cadeiras de pessoa?)
+    this.account = this.loginService.getAccount(); //firebase            //ou que o professor leciona (atributo cadeiras de pessoa?)
+    this.accountType = this.account.role
     this.allCadeiras = this.cadeirasService.getCadeiras(); //isso aqui tá dando ruim
     this.loadUserCadeiras();
   }
@@ -43,16 +43,28 @@ export class PerfilComponent implements OnInit {
   }
 
   loadUserCadeiras(): void {
-    console.log(this.allCadeiras.length)
-    var result: Cadeira[] = [];
-    for (var i = 0; i < this.allCadeiras.length; ++i) {
-      console.log("A");
-      if (this.allCadeiras[i].nome_professor === 'Professor') {
-        result.push(this.allCadeiras[i].clone());
+    if (this.accountType === "p") {
+      console.log(this.allCadeiras.length)
+      var result: Cadeira[] = [];
+      for (var i = 0; i < this.allCadeiras.length; ++i) {
+        if (this.allCadeiras[i].nome_professor === this.account.name) {
+          result.push(this.allCadeiras[i].clone());
+        }
       }
+      console.log(result);
+      this.userCadeiras = result;
+    } else {
+      console.log(this.allCadeiras.length)
+      var result: Cadeira[] = [];
+      for (var i = 0; i < this.allCadeiras.length; ++i) {
+        if (this.allCadeiras[i].alunos.has(this.account.email)) {
+          result.push(this.allCadeiras[i].clone());
+        }
+      }
+      console.log(result);
+      this.userCadeiras = result;
     }
-    console.log(result);
-    this.userCadeiras = result;
+    
   }
 
 }
