@@ -15,16 +15,14 @@ export class AlunosComponent implements OnInit {
 
   aluno: Pessoa = new Pessoa();
 
-  logarAluno(a: Pessoa): void {
+  async logarAluno(a: Pessoa): Promise<void> {
     var result = this.pessoaService.login(a.email, a.senha); 
-    this._route.navigate(['cadeiras']);
-    /*if (result == 'success') {
+    if (await result === 'success') {
       alert("Login efetuado! Seja bem vindo!");
       this._route.navigate(['cadeiras']);
     } else {
       alert("Falhas nas credenciais, tente novamente");
-    }*/
-
+    }
   }
 
 
