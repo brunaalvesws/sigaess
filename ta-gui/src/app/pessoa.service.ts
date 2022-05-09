@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pessoa } from '../../../common/pessoa';
+import { Pessoa, PessoaPackage } from '../../../common/pessoa';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "@angular/fire/auth";
 import { Firestore, doc, getDoc, collection, addDoc} from '@angular/fire/firestore';
@@ -21,25 +21,24 @@ export class PessoaService {
   async criar(a: Pessoa) {
     var result: string;
     await createUserWithEmailAndPassword(this.auth, a.email, a.senha).then(res => {
-        result = 'success';
-        this.post(a);
-        this.http.post<any>(this.taURL + "/aluno", a, {headers: this.headers})
-          .pipe( 
-            retry(2),
-            map( res => {if (res.success) {return res} else {return null}} )
-          ).subscribe(
-            ar => {
-              if (ar) {
+      result = 'success';
+      this.post(a);
+      this.http.post<any>(this.taURL + "/aluno", a.createDataPackage(), {headers: this.headers})
+        .pipe( 
+          retry(2),
+          map( res => {if (res.success) {return res} else {return null}} )
+        ).subscribe(
+          ar => {
+            if (ar) {
 
-              } else {
+            } else {
 
-              } 
-            },
-            msg => {  }
-          );
+            } 
+          },
+          msg => {  }
+        );
       })
       .catch(err => {
-        console.log('deu erro');
         result = err.message;
       });
     return result;
@@ -73,18 +72,18 @@ export class PessoaService {
       return result;
   }
 
-  getPessoaWithEmail(email: string): Promise<Pessoa[]> {
-    var aux = this.http.get<Pessoa[]>(this.taURL + "/alunos")
-    .pipe(
-        retry(2)
-    )
+  getPessoaWithEmail(email: string): Promise<PessoaPackage[]> {
+    var aux = this.http.get<PessoaPackage[]>(this.taURL + "/alunos")
+      .pipe(
+          retry(2)
+      )
     aux.subscribe(
       ar => {
         if (ar) {
           for (let p of ar) {
             if (p.email === email) {
               var pessoa = new Pessoa();
-              pessoa.copyFrom(p);
+              pessoa.copyFromDataPackage(p);
               this.account = pessoa;
               break
             }
