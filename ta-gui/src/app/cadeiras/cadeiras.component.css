@@ -30,3 +30,8 @@ table, th, td {
   background-color:brown;
   height: 100%;
 }
+
+.menu-buttons {
+  display: flex;
+  justify-content: space-around;
+}

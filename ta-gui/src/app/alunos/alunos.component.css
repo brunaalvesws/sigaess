@@ -21,8 +21,9 @@ button:hover {
   background-color: #cfd8dc;
 }
 
-button {
-  margin-left: 20%;
+.menu-buttons {
+  display: flex;
+  justify-content: space-around;
 }
 
 .btcad{
