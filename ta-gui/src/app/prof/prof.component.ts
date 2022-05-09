@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 
-import { LoginService } from '../login.service';
 import { Router } from '@angular/router';
 import { Pessoa } from '../../../../common/pessoa';
 
@@ -11,7 +10,7 @@ import { Pessoa } from '../../../../common/pessoa';
   styleUrls: ['./prof.component.css']
 })
 export class ProfComponent implements OnInit {
-   constructor(private _route: Router, private loginService: LoginService) {}
+   constructor(private _route: Router) {}
 
    prof: Pessoa = new Pessoa();
    cpfduplicado: boolean = false;

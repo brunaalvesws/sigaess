@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cadeira } from '../../../../common/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
-import { LoginService } from '../login.service';
+import { PessoaService } from '../pessoa.service';
 import { Pessoa } from '../../../../common/pessoa';
 
 @Component({
@@ -12,7 +12,7 @@ import { Pessoa } from '../../../../common/pessoa';
 })
 export class CriarCadeiraComponent implements OnInit {
   constructor(private _route: Router, private cadeirasService: CadeiraService, 
-    private loginService: LoginService) { }
+    private pessoaService: PessoaService) { }
 
   professor: Pessoa;
   cadeira: Cadeira = new Cadeira();
@@ -70,8 +70,8 @@ export class CriarCadeiraComponent implements OnInit {
       },
       msg => { alert(msg.message); }
     );
-    this.professor = this.loginService.getAccount();
-    if (!this.professor || this.loginService.getType() == "Aluno") {
+    this.professor = this.pessoaService.getAccount();
+    if (!this.professor || this.pessoaService.getType() == "a") {
       this._route.navigate(['professores']);
     }
     this.cadeira.nome_professor = this.professor.name;

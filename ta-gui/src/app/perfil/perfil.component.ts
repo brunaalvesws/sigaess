@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-
+import { PessoaService } from '../pessoa.service';
 import { Cadeira } from '../../../../common/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
-import { LoginService } from '../login.service';
 import { Pessoa } from '../../../../common/pessoa';
 
 @Component({
@@ -13,7 +12,7 @@ import { Pessoa } from '../../../../common/pessoa';
 })
 export class PerfilComponent implements OnInit {
 
-  constructor(private cadeirasService: CadeiraService, private loginService: LoginService) {}
+  constructor(private cadeirasService: CadeiraService, private pessoaService: PessoaService) {}
   
   accountType: string;
   account: Pessoa = undefined; //Pessoa = undefined;
@@ -26,7 +25,7 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
     //this.cadeiras = this.cadeirasService.getCadeirasOfUser(); //uma função que retorna um array de cadeiras contendo
-    this.account = this.loginService.getAccount(); //firebase //ou que o professor leciona (atributo cadeiras de pessoa?)
+    this.account = this.pessoaService.getAccount(); //firebase //ou que o professor leciona (atributo cadeiras de pessoa?)
     this.accountType = this.account.role
     this.allCadeiras = this.cadeirasService.getCadeiras(); //isso aqui tá dando ruim
     this.loadUserCadeiras();
@@ -68,4 +67,3 @@ export class PerfilComponent implements OnInit {
   }
 
 }
-

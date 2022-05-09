@@ -64,19 +64,3 @@ export class Pessoa {
     return this.uid + ', ' + this.name + ', ' + this.email + ', ' + this.role + ', ' + JSON.stringify(this.horarios);
   } 
 }
-
-export class PersonConverter {
-  toFirestore(person: Pessoa): object {
-    return {
-      uid: person.uid,
-      name: person.name,
-      email: person.email,
-      role: person.role,
-      horarios: person.horarios
-    };
-  }
-
-  fromFirestore(data: object): Pessoa {
-    return new Pessoa(data['uid'], data['name'], data['email'], data['role'], data['horarios']);
-  }
-}

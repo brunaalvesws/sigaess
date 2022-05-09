@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { Cadeira } from '../../../../common/cadeiras';
 import { CadeiraService } from '../cadeiras.service';
-import { LoginService } from '../login.service';
+import { PessoaService } from '../pessoa.service';
 import { Pessoa } from '../../../../common/pessoa';
 
 @Component({  
@@ -12,7 +12,7 @@ import { Pessoa } from '../../../../common/pessoa';
   styleUrls: ['./cadeiras.component.css']
 })
 export class CadeirasComponent implements OnInit {
-  constructor(private cadeirasService: CadeiraService, private loginService: LoginService) {}
+  constructor(private cadeirasService: CadeiraService, private pessoaService: PessoaService) {}
   
   accountType: string;
   account: Pessoa = undefined;
@@ -36,8 +36,8 @@ export class CadeirasComponent implements OnInit {
       },
       msg => { alert(msg.message); }
     );
-    this.accountType = this.loginService.getType();
-    this.account = this.loginService.getAccount();
+    this.accountType = this.pessoaService.getType();
+    this.account = this.pessoaService.getAccount();
     this.cadeiras_departamento = [];
   }
 
