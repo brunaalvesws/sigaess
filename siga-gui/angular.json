@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ta-gui": {
+    "siga-gui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ta-gui",
+            "outputPath": "dist/siga-gui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -31,7 +31,7 @@
             ],
             "scripts": [
               "./node_modules/materialize-css/dist/js/materialize.js",
-              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/jquery/dist/jquery.min.js"
             ]
           },
           "configurations": {
@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ta-gui:build:production"
+              "browserTarget": "siga-gui:build:production"
             },
             "development": {
-              "browserTarget": "ta-gui:build:development"
+              "browserTarget": "siga-gui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ta-gui:build"
+            "browserTarget": "siga-gui:build"
           }
         },
         "test": {
@@ -101,9 +101,21 @@
             ],
             "scripts": []
           }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "siga-gui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "siga-gui:serve:production"
+            }
+          }
         }
       }
     }
   },
-  "defaultProject": "ta-gui"
+  "defaultProject": "siga-gui"
 }
