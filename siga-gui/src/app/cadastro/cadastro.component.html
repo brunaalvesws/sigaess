@@ -1,0 +1,44 @@
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+      <title>Integrated System</title>
+  </head>
+<body>
+   <h3 class="msg" align="center">Digite suas informações:</h3>
+   
+   <form id="cadastro-form" class="my_form">
+      <label>Tipo de Usuário</label>
+      <select name="usertype" ng-model="us.escolha" [(ngModel)]="pessoa.role" class="browser-default">
+         <option value="" disabled selected>
+            Selecione o Tipo de usuário
+          </option>
+         <option value="p">Professor </option>
+         <option value="a">Aluno </option>
+      </select>
+      <div class="input-field">
+        <input type="text" id="cadeira-name"
+          [(ngModel)]="pessoa.name"
+          [ngModelOptions]="{standalone: true}" required />
+        <label for="cadeira-name">Nome Completo </label>
+      </div>
+      <div class="row">
+         <input type="text" id="cadeira-name"
+          [(ngModel)]="pessoa.email"
+          [ngModelOptions]="{standalone: true}" required />
+         <label>Email </label>
+      </div>
+      <div class="row">
+         <input type="password" id="cadeira-name"
+          [(ngModel)]="pessoa.senha"
+          [ngModelOptions]="{standalone: true}" required />
+         <label>Senha </label>
+      </div>
+      <button class="btn waves-effect waves-light" (click)="criarPessoa(pessoa)" type="submit">Cadastrar</button>
+    </form>
+    
+</body>
+</html>

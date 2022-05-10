@@ -1,0 +1,82 @@
+<html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+      <title>Integrated System</title>
+  </head>
+<body>
+  <form id="cadeira-form" class="my_form">
+    <div class="input-field">
+      <input type="text" id="cadeira-name"
+        [(ngModel)]="cadeira.nome_disciplina"
+        [ngModelOptions]="{standalone: true}" required />
+      <label for="cadeira-name">Nome da Disciplina </label>
+    </div>
+    <div class="row">
+      <label>Departamento</label>
+      <div class="select1 green-text">
+        <select class="browser-default" 
+          [(ngModel)]="cadeira.departamento_ofertante" 
+          [ngModelOptions]="{standalone: true}">
+          <option value="" disabled selected>
+            Selecione o Departamento
+          </option>
+          <option *ngFor="let d of departamentos" value={{d}}>
+            {{d}}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="row">
+      <input type="number" id="cadeira-vagas" min="1" 
+        [(ngModel)]="cadeira.numero_vagas" [ngModelOptions]="{standalone: true}" required />
+      <label for="cadeira-vagas">Total de vagas </label>
+    </div>
+    <div class="row" align="center">
+      <button class="btn waves-effect waves-light" (click)="criarCadeira(cadeira)" type="submit">Finalizar
+      </button>
+    </div>
+  </form>
+
+  <div class="my_form">
+    <table class="centered" border="0" cellspacing="0" cellpadding="0" width="570" bordercolor="#000000">
+      <tbody>
+        <tr>
+          <td bgcolor="#ffcc99" class="topoTabelaEsq" align="center" width="40"><b>Horários</b></td>
+          <td bgcolor="#ffcc99" class="topoTabelaCentro" align="center" width="80"><b>Segunda</b></td>
+          <td bgcolor="#ffcc99" class="topoTabelaCentro" align="center" width="80"><b>Terça</b></td>
+          <td bgcolor="#ffcc99" class="topoTabelaCentro" align="center" width="80"><b>Quarta</b></td>
+          <td bgcolor="#ffcc99" class="topoTabelaCentro" align="center" width="80"><b>Quinta</b></td>
+          <td bgcolor="#ffcc99" class="topoTabelaCentro" align="center" width="80"><b>Sexta</b></td>
+          <td bgcolor="#ffcc99" class="topoTabelaDir" align="center" width="80"><b>Sábado</b></td>
+        </tr>
+      </tbody>
+      <tbody *ngFor="let h of horarios" border="0" cellspacing="0" cellpadding="0" width="570" bordercolor="#000000">
+        <tr>
+          <td *ngIf="h < 10" align="center">0{{h}}:00</td>
+          <td *ngIf="h >= 10" align="center">{{h}}:00</td>
+          <td *ngFor="let weekday of weekdays" (click)="toggleHorario(cadeira, weekday, h)" align="center">
+            <div *ngIf="cadeira.horarios.get(weekday).has(h)" class="horario_selecionado">.</div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- We need jquery first -->  
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+  <script>
+    $(document).ready(function(){
+      $('select').formSelect();
+    });
+  </script>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+
+</body>
+</html>

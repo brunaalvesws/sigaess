@@ -1,0 +1,23 @@
+{
+  "name": "siga-server",
+  "version": "0.0.2",
+  "description": "Servidor do Siga",
+  "main": "siga-server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "tsc": "./node_modules/typescript/bin/tsc",
+    "start": "npx nodemon --exec ts-node --files siga-server.ts"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.15.4",
+    "@types/express": "^4.0.37",
+    "body-parser": "^1.18.2",
+    "@types/body-parser": "^1.16.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7",
+    "ts-node": "^10.0.0",
+    "typescript": "~4.6.2"
+  }
+}
