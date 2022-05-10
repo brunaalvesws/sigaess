@@ -12,21 +12,21 @@
    
    <form id="cadastro-form" class="my_form">
       <div class="input-field">
-        <input type="text" id="usuario-name"
+        <input name="namebox" type="text" id="usuario-name"
           [(ngModel)]="pessoa.email"
           [ngModelOptions]="{standalone: true}" required />
         <label for="usuario-name">Email </label>
       </div>
       <div class="row">
-         <input type="password" id="usuario-name"
+         <input name="passbox" type="password" id="usuario-name"
           [(ngModel)]="pessoa.senha"
           [ngModelOptions]="{standalone: true}" required />
          <label>Senha </label>
       </div>
       <div class="menu-buttons">
-         <button class="btn waves-effect waves-light" (click)="logar(pessoa)" type="submit">Fazer Login </button>
+         <button name="loginButton" class="btn waves-effect waves-light" (click)="logar(pessoa)" type="submit">Fazer Login </button>
          <a routerLink="/cadastro">
-            <button class="btn waves-effect waves-light">Cadastrar</button>
+            <button name="cadastroButton" class="btn waves-effect waves-light">Cadastrar</button>
          </a>
       </div>
    </form>

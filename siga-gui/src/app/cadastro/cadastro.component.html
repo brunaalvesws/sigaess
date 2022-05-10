@@ -20,24 +20,24 @@
          <option value="a">Aluno </option>
       </select>
       <div class="input-field">
-        <input type="text" id="pessoa-name"
+        <input name="userName" type="text" id="user-name"
           [(ngModel)]="pessoa.name"
           [ngModelOptions]="{standalone: true}" required />
         <label for="pessoa-name">Nome Completo </label>
       </div>
       <div class="row">
-         <input type="text" id="pessoa-email"
+         <input name="userEmail" type="text" id="user-email"
           [(ngModel)]="pessoa.email"
           [ngModelOptions]="{standalone: true}" required />
          <label>Email </label>
       </div>
       <div class="row">
-         <input type="password" id="pessoa-senha"
+         <input name="userSenha" type="password" id="user-senha"
           [(ngModel)]="pessoa.senha"
           [ngModelOptions]="{standalone: true}" required />
          <label>Senha </label>
       </div>
-      <button class="btn waves-effect waves-light" (click)="criarPessoa(pessoa)" type="submit">Cadastrar</button>
+      <button name="cadastrar" class="btn waves-effect waves-light" (click)="criarPessoa(pessoa)" type="submit">Cadastrar</button>
     </form>
     
 </body>

@@ -12,49 +12,49 @@
   <div align="center">
     <div class="menu-buttons">
       <a  *ngIf="checkIfProf(account)" routerLink="/criarCadeira">
-        <button class="btn waves-effect waves-light" >Adicionar Nova Cadeira</button></a>
-      <a routerLink="/perfil"><button class="btn waves-effect waves-light" >Ver horários</button></a>
+        <button name="addCadeira" class="btn waves-effect waves-light" >Adicionar Nova Cadeira</button></a>
+      <a routerLink="/perfil"><button name="viewHorario" class="btn waves-effect waves-light" >Ver horários</button></a>
     </div>
     <form id="cadeira-form" class="my_form">
       <div class="row">
           <div class="select1 green-text">
-            <select class="browser-default" 
+            <select name="selectDepartamento" class="browser-default" 
               [(ngModel)]="departamento" 
               (ngModelChange)="getTableLine(departamento)"
               [ngModelOptions]="{standalone: true}">
               <option value="" disabled selected>
                 Selecione o Departamento
               </option>
-              <option *ngFor="let d of departamentos" value={{d}}>
+              <option name="departamentosList" *ngFor="let d of departamentos" value={{d}}>
                 {{d}}
               </option>
             </select>
           </div>
         </div>
         <div class="row">
-          <select class="browser-default" 
+          <select name="selectCadeira" class="browser-default" 
               [(ngModel)]="nomeCadeira"
               [ngModelOptions]="{standalone: true}">
-            <option *ngFor="let d of cadeiras_departamento" value={{d.nome_disciplina}}>{{d.nome_disciplina}} </option>
+            <option name="cadeirasList" *ngFor="let d of cadeiras_departamento" value={{d.nome_disciplina}}>{{d.nome_disciplina}} </option>
           </select>
         </div>
-        <button class="btn waves-effect waves-light" (click)="loadCadeira(nomeCadeira)" type="submit">Selecionar</button>
+        <button name="slectButton" class="btn waves-effect waves-light" (click)="loadCadeira(nomeCadeira)" type="submit">Selecionar</button>
     </form>
     <div *ngIf="(cadeira != undefined)" align="center">
       <table>
         <td *ngIf="checkIfAluno(account)"><button class="btn waves-effect waves-light" (click)="matricula(cadeira, account)" type="submit">Matricular
         </button></td>
         <tr>
-          <td><label>Nome: {{cadeira.nome_disciplina}}</label></td>
+          <td><label name="selectedNomeDisc">Nome: {{cadeira.nome_disciplina}}</label></td>
         </tr>
         <tr>
-          <td><label>Professor: {{cadeira.nome_professor}}</label></td>
+          <td><label name="selectedNomeProf">Professor: {{cadeira.nome_professor}}</label></td>
         </tr>
         <tr>
-          <td><label>Departamento Ofertante: {{cadeira.departamento_ofertante}}</label></td>
+          <td><label name="selectedDepartamento">Departamento Ofertante: {{cadeira.departamento_ofertante}}</label></td>
         </tr>
         <tr>
-          <td><label>Total de vagas: {{cadeira.numero_vagas}}</label></td>
+          <td><label name="selectedNumVagas">Total de vagas: {{cadeira.numero_vagas}}</label></td>
         </tr>
       </table>
     </div>
@@ -62,7 +62,7 @@
   <hr>
   <br>
   <div class="gradeHorarios" *ngIf="(cadeira != undefined)" align="center">
-    <table border="0" cellspacing="0" cellpadding="0" width="570" bordercolor="#000000">
+    <table class="centered" border="0" cellspacing="0" cellpadding="0" width="570" bordercolor="#000000">
       <tbody>
         <tr>
           <td bgcolor="#ffcc99" class="topoTabelaEsq" align="center" width="40"><b>Horários</b></td>
@@ -79,7 +79,7 @@
           <td *ngIf="h < 10" align="center">0{{h}}:00</td>
           <td *ngIf="h >= 10" align="center">{{h}}:00</td>
           <td *ngFor="let weekday of weekdays" align="center">
-            <div *ngIf="cadeira.horarios.get(weekday).has(h)" class="horario_selecionado">.</div>
+            <div id="{{'content' + weekday + h.toString()}}" *ngIf="cadeira.horarios.get(weekday).has(h)" class="horario_selecionado"  align="center">.</div>
           </td>
         </tr>
       </tbody>
