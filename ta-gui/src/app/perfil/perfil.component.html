@@ -10,11 +10,12 @@
 <body class="all">
   <h2 *ngIf="account != undefined">Bem vindo {{account.name}}!</h2>
   <div align="center">
-    <form id="cadeira-form" class="my_form">
+    <form id="perfil-form" class="my_form">
         <div class="row">
           <select class="browser-default" 
               [(ngModel)]="nomeCadeira"
               [ngModelOptions]="{standalone: true}">
+            <label for="perfil-form">Selecione uma Cadeira para ver informações</label>
             <option value="" disabled selected>
                 Selecione uma Cadeira
             </option>
