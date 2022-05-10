@@ -19,40 +19,40 @@ sigaserver.use(allowCrossDomain);
 
 sigaserver.use(express.json());
 
-// Requisições de aluno
+// Requisições de usuario
 
-var alunos: CadastroDePessoas = new CadastroDePessoas();
+var usuarios: CadastroDePessoas = new CadastroDePessoas();
 
-sigaserver.get('/alunos', function (req, res) {
-  var aluno: string = JSON.stringify(alunos.getCadeirasPackages());
-  res.send(aluno);
+sigaserver.get('/usuarios', function (req, res) {
+  var usuario: string = JSON.stringify(usuarios.getCadeirasPackages());
+  res.send(usuario);
 })
 
-sigaserver.post('/aluno', function (req: express.Request, res: express.Response) {
-  var alunoPackage: PessoaPackage = <PessoaPackage> req.body;
+sigaserver.post('/usuario', function (req: express.Request, res: express.Response) {
+  var usuarioPackage: PessoaPackage = <PessoaPackage> req.body;
   if (req.body.role != "") {
-    var aluno = new Pessoa;
-    aluno.copyFromDataPackage(alunoPackage);
-    aluno = alunos.criar(aluno);
-    if (aluno) {
-      res.send({"success": "O aluno foi cadastrado com sucesso"});
+    var usuario = new Pessoa;
+    usuario.copyFromDataPackage(usuarioPackage);
+    usuario = usuarios.criar(usuario);
+    if (usuario) {
+      res.send({"success": "O usuário foi cadastrado com sucesso"});
     } else {
-      res.send({"failure": "O aluno não pode ser cadastrado"});
+      res.send({"failure": "O usuário não pode ser cadastrado"});
     }
   } else {
-    res.send({"failure": "O aluno não pode ser cadastrado"});
+    res.send({"failure": "O usuário não pode ser cadastrado"});
   }
 })
 
-sigaserver.put('/aluno', function (req: express.Request, res: express.Response) {
-  var alunoPackage: PessoaPackage = <PessoaPackage> req.body;
-  var aluno = new Pessoa;
-  aluno.copyFromDataPackage(alunoPackage)
-  aluno = alunos.atualizar(aluno);
-  if (aluno) {
-    res.send({"success": "O aluno foi atualizado com sucesso"});
+sigaserver.put('/usuario', function (req: express.Request, res: express.Response) {
+  var usuarioPackage: PessoaPackage = <PessoaPackage> req.body;
+  var usuario = new Pessoa;
+  usuario.copyFromDataPackage(usuarioPackage)
+  usuario = usuarios.atualizar(usuario);
+  if (usuario) {
+    res.send({"success": "O usuário foi atualizado com sucesso"});
   } else {
-    res.send({"failure": "O aluno não pode ser atualizado"});
+    res.send({"failure": "O usuário não pode ser atualizado"});
   }
 })
 
@@ -91,16 +91,16 @@ sigaserver.put('/cadeira', function (req: express.Request, res: express.Response
   }
 })
 
-sigaserver.put('/cadeiraAddAluno', function (req: express.Request, res: express.Response) {
+sigaserver.put('/cadeiraAddusuario', function (req: express.Request, res: express.Response) {
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body.cadeira;
-  var aluno: Pessoa = <Pessoa> req.body.aluno;
+  var usuario: Pessoa = <Pessoa> req.body.usuario;
   var cadeira = new Cadeira();
   cadeira.copyFromDataPackage(cadeiraPackage);
   var pessoa_aux = new Pessoa();
-  pessoa_aux.copyFrom(aluno);
-  var pessoa = alunos.getWithEmail(pessoa_aux.email);
-  if (alunos.checkAddHorario(pessoa, cadeira)) {
-    var result = cadeiras.addAluno(cadeira, aluno);
+  pessoa_aux.copyFrom(usuario);
+  var pessoa = usuarios.getWithEmail(pessoa_aux.email);
+  if (usuarios.checkAddHorario(pessoa, cadeira)) {
+    var result = cadeiras.addAluno(cadeira, usuario);
     if (result) {
       pessoa.addCadeira(cadeira);
       res.send({"success": "Matricula realizada com sucesso"});
