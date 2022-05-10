@@ -4,23 +4,23 @@ import { Pessoa, PessoaPackage } from '../common/pessoa';
 export class CadastroDePessoas {
   pessoas: Pessoa[] = [];
 
-  criar(aluno: Pessoa): Pessoa {
+  criar(pessoa: Pessoa): Pessoa {
     var result = null;
-    if (this.cpfNaoCadastrado(aluno.email)) {
+    if (this.emailNaoCadastrado(pessoa.email)) {
       result = new Pessoa();
-      result.copyFrom(aluno);
+      result.copyFrom(pessoa);
       this.pessoas.push(result);
     }
     return result;
   }
 
-  cpfNaoCadastrado(email: string): boolean {
+  emailNaoCadastrado(email: string): boolean {
     return !this.pessoas.find(a => a.email == email);
   }
 
-  atualizar(aluno: Pessoa): Pessoa {
-    var result: Pessoa = this.pessoas.find(a => a.email == aluno.email);
-    if (result) result.copyFrom(aluno);
+  atualizar(pessoa: Pessoa): Pessoa {
+    var result: Pessoa = this.pessoas.find(a => a.email == pessoa.email);
+    if (result) result.copyFrom(pessoa);
     return result;
   }
 
@@ -32,7 +32,7 @@ export class CadastroDePessoas {
     return !this.pessoas.find(a => a.email == email && a.senha == senha);
   }
 
-  getAlunoCPFPass(email: string, senha: string): Pessoa {
+  getpessoaEmailPass(email: string, senha: string): Pessoa {
     return this.pessoas.find(a => a.email == email && a.senha == senha);
   }
 
