@@ -66,8 +66,6 @@ sigaserver.get('/cadeiras', function (req, res) {
 })
 
 sigaserver.post('/cadeira', function (req: express.Request, res: express.Response) {
-  // Lembrar de colocar pra ele retornar a string do criar 
-  // cadeira para quando dá errado
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body;
   var cadeira = new Cadeira();
   cadeira.copyFromDataPackage(cadeiraPackage);
@@ -91,7 +89,7 @@ sigaserver.put('/cadeira', function (req: express.Request, res: express.Response
   }
 })
 
-sigaserver.put('/cadeiraAddusuario', function (req: express.Request, res: express.Response) {
+sigaserver.put('/cadeiraAddAluno', function (req: express.Request, res: express.Response) {
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body.cadeira;
   var usuario: Pessoa = <Pessoa> req.body.usuario;
   var cadeira = new Cadeira();
@@ -117,6 +115,12 @@ sigaserver.get('/departamentos', function (req: express.Request, res: express.Re
   res.send(departamentos);
 })
 
-sigaserver.listen(3000, function () {
+var server = sigaserver.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
+
+function closeServer(): void {
+  server.close();
+}
+
+export { server, closeServer }
