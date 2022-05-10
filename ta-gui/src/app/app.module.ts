@@ -12,12 +12,11 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MetasComponent } from './metas/metas.component';
-import { AlunosComponent } from './alunos/alunos.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 import { PessoaService } from './pessoa.service';
 import { CadeirasComponent } from './cadeiras/cadeiras.component';
 import { CadeiraService} from './cadeiras.service';
 import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
-import { ProfComponent } from './prof/prof.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { PerfilComponent } from './perfil/perfil.component';
 
@@ -25,9 +24,7 @@ import { PerfilComponent } from './perfil/perfil.component';
 @NgModule({
   declarations: [
     AppComponent,
-    MetasComponent,
-    ProfComponent,
-    AlunosComponent,
+    UsuarioComponent,
     CadastroComponent,
     CadeirasComponent,
     CriarCadeiraComponent,
@@ -43,12 +40,8 @@ import { PerfilComponent } from './perfil/perfil.component';
     provideAuth(() => getAuth()),
     RouterModule.forRoot([
       {
-        path: 'professores',
-        component: ProfComponent
-      },
-      {
-        path: 'alunos',
-        component: AlunosComponent
+        path: 'usuario',
+        component: UsuarioComponent
       },
       {
         path: 'cadastro',

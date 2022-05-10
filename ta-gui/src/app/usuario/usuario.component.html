@@ -8,23 +8,23 @@
       <title>Integrated System</title>
   </head>
 <body>
-   <h3 class="msg" align="center">Bem vindo, aluno!</h3>
+   <h3 class="msg" align="center">Seja bem vindo!</h3>
    
    <form id="cadastro-form" class="my_form">
       <div class="input-field">
-        <input type="text" id="cadeira-name"
-          [(ngModel)]="aluno.email"
+        <input type="text" id="usuario-name"
+          [(ngModel)]="pessoa.email"
           [ngModelOptions]="{standalone: true}" required />
-        <label for="cadeira-name">Email </label>
+        <label for="usuario-name">Email </label>
       </div>
       <div class="row">
-         <input type="password" id="cadeira-name"
-          [(ngModel)]="aluno.senha"
+         <input type="password" id="usuario-name"
+          [(ngModel)]="pessoa.senha"
           [ngModelOptions]="{standalone: true}" required />
          <label>Senha </label>
       </div>
       <div class="menu-buttons">
-         <button class="btn waves-effect waves-light" (click)="logarAluno(aluno)" type="submit">Fazer Login </button>
+         <button class="btn waves-effect waves-light" (click)="logar(pessoa)" type="submit">Fazer Login </button>
          <a routerLink="/cadastro">
             <button class="btn waves-effect waves-light">Cadastrar</button>
          </a>

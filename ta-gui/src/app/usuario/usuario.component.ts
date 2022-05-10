@@ -7,15 +7,15 @@ import { Pessoa } from '../../../../common/pessoa';
 
 @Component({  
   selector: 'app-root',
-  templateUrl: './alunos.component.html',
-  styleUrls: ['./alunos.component.css']
+  templateUrl: './usuario.component.html',
+  styleUrls: ['./usuario.component.css']
 })
-export class AlunosComponent implements OnInit {
+export class UsuarioComponent implements OnInit {
   constructor(private _route: Router, private pessoaService: PessoaService) {}
 
   aluno: Pessoa = new Pessoa();
 
-  async logarAluno(a: Pessoa): Promise<void> {
+  async logar(a: Pessoa): Promise<void> {
     var result = this.pessoaService.login(a.email, a.senha); 
     if (await result === 'success') {
       await this.pessoaService.getPessoaWithEmail(a.email)
