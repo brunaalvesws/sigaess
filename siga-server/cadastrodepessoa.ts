@@ -28,14 +28,6 @@ export class CadastroDePessoas {
     return this.pessoas;
   }
 
-  checksenha(email: string, senha: string): boolean {
-    return !this.pessoas.find(a => a.email == email && a.senha == senha);
-  }
-
-  getpessoaEmailPass(email: string, senha: string): Pessoa {
-    return this.pessoas.find(a => a.email == email && a.senha == senha);
-  }
-
   getWithEmail(email: string): Pessoa {
     return this.pessoas.find(a => a.email == email);
   }
