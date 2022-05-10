@@ -1,3 +1,5 @@
+import { Cadeira } from "./cadeiras";
+
 export class Pessoa {
   uid: string;
   name: string;
@@ -85,6 +87,14 @@ export class Pessoa {
     } else {
       return obj
     }
+  }
+
+  addCadeira(cadeira: Cadeira): void {
+    cadeira.horarios.forEach((value: Set<number>, key: string) => {
+      value.forEach((inner_value: number) => {
+        this.horarios.get(key).set(inner_value, cadeira.nome_disciplina);
+      });
+    });
   }
 
   copyFromDataPackage(pessoaPackage: PessoaPackage): void {

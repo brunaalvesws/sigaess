@@ -16,18 +16,14 @@ export class CadastroDeCadeiras {
                                                 "CTG"]);
 
     criar(cadeira: Cadeira): Cadeira | string {
-        var result_check = this.checkCriar(cadeira);
-        console.log(cadeira);
-        if (result_check == "ok") {
-            console.log("cadeira válida");
+        var result_check = this.checkCriar(cadeira);    
+        if (result_check == "ok") {        
             this.cadeiras.push(cadeira);
             if (!this.departamentos.has(cadeira.departamento_ofertante)) {
                 this.departamentos.add(cadeira.departamento_ofertante);
             }
             return cadeira;
-        }
-        console.log("cadeira inválida");
-        console.log(result_check);
+        }        
         return result_check;
     }
 
@@ -59,13 +55,17 @@ export class CadastroDeCadeiras {
     validHorarios(novaCadeira: Cadeira): boolean {
         for (let cadeira of this.cadeiras){
             if (cadeira.nome_professor === novaCadeira.nome_professor){
-            for (var key in cadeira.horarios){ 
-                var alocacaoAtual = cadeira.horarios.get(key);
-                var novaAlocacao = novaCadeira.horarios.get(key);
-                if (equal(alocacaoAtual, novaAlocacao) || interseccao(alocacaoAtual, novaAlocacao)) {
-                return false;
+                var result = true;
+                cadeira.horarios.forEach((value: Set<number>, key: string) => {
+                    var alocacaoAtual = cadeira.horarios.get(key);
+                    var novaAlocacao = novaCadeira.horarios.get(key);
+                    if (equal(alocacaoAtual, novaAlocacao) || interseccao(alocacaoAtual, novaAlocacao)) {
+                        result = false;
+                    }
+                });
+                if (!result) {
+                    return result
                 }
-            }
             }
         }
         return true;
@@ -116,12 +116,9 @@ export class CadastroDeCadeiras {
     getCadeirasPackages(): CadeiraPackage[] {
         var cadeirasPackages: CadeiraPackage[] = [];
         this.cadeiras.forEach(a => {
-                console.log(a);
                 cadeirasPackages.push(new CadeiraPackage(a))
-                console.log(new CadeiraPackage(a))
             }
         )
-        console.log(cadeirasPackages)
         return cadeirasPackages
     }
 

@@ -29,7 +29,6 @@ taserver.get('/alunos', function (req, res) {
 })
 
 taserver.post('/aluno', function (req: express.Request, res: express.Response) {
-  console.log("I received a /aluno post")
   var alunoPackage: PessoaPackage = <PessoaPackage> req.body; //verificar se é mesmo Aluno!
   var aluno = new Pessoa;
   aluno.copyFromDataPackage(alunoPackage)
@@ -58,7 +57,6 @@ taserver.put('/aluno', function (req: express.Request, res: express.Response) {
 var cadeiras: CadastroDeCadeiras = new CadastroDeCadeiras();
 
 taserver.get('/cadeiras', function (req, res) {
-  console.log("I receave a /cadeiras get");
   var result_cadeiras: string = JSON.stringify(cadeiras.getCadeirasPackages());
   res.send(result_cadeiras);
 })
@@ -66,7 +64,6 @@ taserver.get('/cadeiras', function (req, res) {
 taserver.post('/cadeira', function (req: express.Request, res: express.Response) {
   // Lembrar de colocar pra ele retornar a string do criar 
   // cadeira para quando dá errado
-  console.log("I receave a /cadeira post");
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body;
   var cadeira = new Cadeira();
   cadeira.copyFromDataPackage(cadeiraPackage);
@@ -79,7 +76,6 @@ taserver.post('/cadeira', function (req: express.Request, res: express.Response)
 })
 
 taserver.put('/cadeira', function (req: express.Request, res: express.Response) {
-  console.log("I receave a /cadeira put")
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body;
   var cadeira = new Cadeira();
   cadeira.copyFromDataPackage(cadeiraPackage);
@@ -92,16 +88,23 @@ taserver.put('/cadeira', function (req: express.Request, res: express.Response) 
 })
 
 taserver.put('/cadeiraAddAluno', function (req: express.Request, res: express.Response) {
-  console.log("I receave a /cadeiraAddAluno put")
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body.cadeira;
   var aluno: Pessoa = <Pessoa> req.body.aluno;
   var cadeira = new Cadeira();
   cadeira.copyFromDataPackage(cadeiraPackage);
-  var result = cadeiras.addAluno(cadeira, aluno);
-  if (result) {
-    res.send({"success": "A cadeira foi atualizada com sucesso"});
+  var pessoa_aux = new Pessoa();
+  pessoa_aux.copyFrom(aluno);
+  var pessoa = alunos.getWithEmail(pessoa_aux.email);
+  if (alunos.checkAddHorario(pessoa, cadeira)) {
+    var result = cadeiras.addAluno(cadeira, aluno);
+    if (result) {
+      pessoa.addCadeira(cadeira);
+      res.send({"success": "Matricula realizada com sucesso"});
+    } else {
+      res.send({"failure": "Falha na matricula: não há mais vagas"});
+    }
   } else {
-    res.send({"failure": "A cadeira não pode ser atualizada"});
+    res.send({"failure": "Falha na matricula: conflito de horários"})
   }
 })
 

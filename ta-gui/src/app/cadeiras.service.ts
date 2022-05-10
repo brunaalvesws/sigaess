@@ -57,22 +57,22 @@ export class CadeiraService {
     getCadeiras(departamento_ofertante: String = ""): Cadeira[] {
         var result: Cadeira[] = [];
         this.http.get<CadeiraPackage[]>(this.taURL + "/cadeiras")
-                            .pipe(
-                                retry(2)
-                            ).subscribe(
-                                ar => {
-                                        if (ar) {
-                                            for (let c of ar) {
-                                                if (departamento_ofertante=="" || c.departamento_ofertante==departamento_ofertante) {
-                                                    var cadeira = new Cadeira();
-                                                    cadeira.copyFromDataPackage(c);
-                                                    result.push(cadeira);
-                                                }
-                                            }
-                                        }
-                                    },
-                                msg => { alert(msg.message); }
-                            );
+            .pipe(
+                retry(2)
+            ).subscribe(
+                ar => {
+                        if (ar) {
+                            for (let c of ar) {
+                                if (departamento_ofertante=="" || c.departamento_ofertante==departamento_ofertante) {
+                                    var cadeira = new Cadeira();
+                                    cadeira.copyFromDataPackage(c);
+                                    result.push(cadeira);
+                                }
+                            }
+                        }
+                    },
+                msg => { alert(msg.message); }
+            );
         console.log(result.length)
         return result;        
     }
