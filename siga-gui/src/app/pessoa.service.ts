@@ -23,7 +23,7 @@ export class PessoaService {
     await createUserWithEmailAndPassword(this.auth, a.email, a.senha).then(res => {
       result = 'success';
       this.post(a);
-      this.http.post<any>(this.taURL + "/aluno", a.createDataPackage(), {headers: this.headers})
+      this.http.post<any>(this.taURL + "/usuario", a.createDataPackage(), {headers: this.headers})
         .pipe( 
           retry(2),
           map( res => {if (res.success) {return res} else {return null}} )
@@ -74,7 +74,7 @@ export class PessoaService {
   }
 
   getPessoaWithEmail(email: string): Promise<PessoaPackage[]> {
-    var aux = this.http.get<PessoaPackage[]>(this.taURL + "/alunos")
+    var aux = this.http.get<PessoaPackage[]>(this.taURL + "/usuarios")
       .pipe(
           retry(2)
       )
