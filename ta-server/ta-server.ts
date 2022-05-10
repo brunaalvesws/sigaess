@@ -29,12 +29,16 @@ taserver.get('/alunos', function (req, res) {
 })
 
 taserver.post('/aluno', function (req: express.Request, res: express.Response) {
-  var alunoPackage: PessoaPackage = <PessoaPackage> req.body; //verificar se é mesmo Aluno!
-  var aluno = new Pessoa;
-  aluno.copyFromDataPackage(alunoPackage)
-  aluno = alunos.criar(aluno);
-  if (aluno) {
-    res.send({"success": "O aluno foi cadastrado com sucesso"});
+  var alunoPackage: PessoaPackage = <PessoaPackage> req.body;
+  if (req.body.role != "") {
+    var aluno = new Pessoa;
+    aluno.copyFromDataPackage(alunoPackage);
+    aluno = alunos.criar(aluno);
+    if (aluno) {
+      res.send({"success": "O aluno foi cadastrado com sucesso"});
+    } else {
+      res.send({"failure": "O aluno não pode ser cadastrado"});
+    }
   } else {
     res.send({"failure": "O aluno não pode ser cadastrado"});
   }
