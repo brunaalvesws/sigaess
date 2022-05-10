@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MetasComponent } from './metas/metas.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { PessoaService } from './pessoa.service';
 import { CadeirasComponent } from './cadeiras/cadeiras.component';
