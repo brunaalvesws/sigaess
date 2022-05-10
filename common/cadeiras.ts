@@ -48,7 +48,6 @@ export class Cadeira {
 
   cloneHorarios(): Map<string, Set<number>> {
     var horarios: Map<string, Set<number>> = new Map<string, Set<number>>();
-    console.log(this.horarios)
     this.horarios.forEach((v, k) => {
       horarios.set(k, new Set(JSON.parse(JSON.stringify([...v]))));
     });

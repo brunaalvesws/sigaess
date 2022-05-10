@@ -16,12 +16,16 @@ export class CadastroComponent implements OnInit {
   pessoa: Pessoa = new Pessoa();
 
   async criarPessoa(a: Pessoa): Promise<void> {
-    var result = this.pessoaService.criar(a);
-    if (await result === 'success') {
-      alert("Cadastro realizado! Faça Login!");
-      this._route.navigate(['alunos']);
+    if (a.role == "a" || a.role == "p") {
+      var result = this.pessoaService.criar(a);
+      if (await result === 'success') {
+        alert("Cadastro realizado! Faça Login!");
+        this._route.navigate(['alunos']);
+      } else {
+        alert("Informações inválidas");
+      }
     } else {
-      alert("Informações inválidas");
+      alert("Selecione um tipo de usuário");
     }
   }
 
