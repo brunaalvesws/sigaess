@@ -1,14 +1,13 @@
 {
-  "name": "ta-server",
+  "name": "siga-server",
   "version": "0.0.2",
-  "description": "Servidor do teaching assistant",
-  "main": "ta-server.js",
+  "description": "Servidor do Siga",
+  "main": "siga-server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "tsc": "./node_modules/typescript/bin/tsc",
-    "start": "npx nodemon --exec ts-node --files ta-server.ts"
+    "start": "npx nodemon --exec ts-node --files siga-server.ts"
   },
-  "author": "Paulo Borba",
   "license": "MIT",
   "dependencies": {
     "express": "^4.15.4",

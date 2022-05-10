@@ -6,7 +6,7 @@ import {CadastroDePessoas} from './cadastrodepessoa';
 import { CadastroDeCadeiras } from './cadastrodecadeiras';
 import { Cadeira, CadeiraPackage } from '../common/cadeiras';
 
-var taserver = express();
+var sigaserver = express();
 
 var allowCrossDomain = function(req: any, res: any, next: any) {
   res.header('Access-Control-Allow-Origin', "*");
@@ -15,20 +15,20 @@ var allowCrossDomain = function(req: any, res: any, next: any) {
   next();
 }
 
-taserver.use(allowCrossDomain);
+sigaserver.use(allowCrossDomain);
 
-taserver.use(express.json());
+sigaserver.use(express.json());
 
 // Requisições de aluno
 
 var alunos: CadastroDePessoas = new CadastroDePessoas();
 
-taserver.get('/alunos', function (req, res) {
+sigaserver.get('/alunos', function (req, res) {
   var aluno: string = JSON.stringify(alunos.getCadeirasPackages());
   res.send(aluno);
 })
 
-taserver.post('/aluno', function (req: express.Request, res: express.Response) {
+sigaserver.post('/aluno', function (req: express.Request, res: express.Response) {
   var alunoPackage: PessoaPackage = <PessoaPackage> req.body;
   if (req.body.role != "") {
     var aluno = new Pessoa;
@@ -44,7 +44,7 @@ taserver.post('/aluno', function (req: express.Request, res: express.Response) {
   }
 })
 
-taserver.put('/aluno', function (req: express.Request, res: express.Response) {
+sigaserver.put('/aluno', function (req: express.Request, res: express.Response) {
   var alunoPackage: PessoaPackage = <PessoaPackage> req.body;
   var aluno = new Pessoa;
   aluno.copyFromDataPackage(alunoPackage)
@@ -60,12 +60,12 @@ taserver.put('/aluno', function (req: express.Request, res: express.Response) {
 
 var cadeiras: CadastroDeCadeiras = new CadastroDeCadeiras();
 
-taserver.get('/cadeiras', function (req, res) {
+sigaserver.get('/cadeiras', function (req, res) {
   var result_cadeiras: string = JSON.stringify(cadeiras.getCadeirasPackages());
   res.send(result_cadeiras);
 })
 
-taserver.post('/cadeira', function (req: express.Request, res: express.Response) {
+sigaserver.post('/cadeira', function (req: express.Request, res: express.Response) {
   // Lembrar de colocar pra ele retornar a string do criar 
   // cadeira para quando dá errado
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body;
@@ -79,7 +79,7 @@ taserver.post('/cadeira', function (req: express.Request, res: express.Response)
   }
 })
 
-taserver.put('/cadeira', function (req: express.Request, res: express.Response) {
+sigaserver.put('/cadeira', function (req: express.Request, res: express.Response) {
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body;
   var cadeira = new Cadeira();
   cadeira.copyFromDataPackage(cadeiraPackage);
@@ -91,7 +91,7 @@ taserver.put('/cadeira', function (req: express.Request, res: express.Response) 
   }
 })
 
-taserver.put('/cadeiraAddAluno', function (req: express.Request, res: express.Response) {
+sigaserver.put('/cadeiraAddAluno', function (req: express.Request, res: express.Response) {
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body.cadeira;
   var aluno: Pessoa = <Pessoa> req.body.aluno;
   var cadeira = new Cadeira();
@@ -112,11 +112,11 @@ taserver.put('/cadeiraAddAluno', function (req: express.Request, res: express.Re
   }
 })
 
-taserver.get('/departamentos', function (req: express.Request, res: express.Response) {
+sigaserver.get('/departamentos', function (req: express.Request, res: express.Response) {
   var departamentos: string = JSON.stringify(cadeiras.getDepartamentos());
   res.send(departamentos);
 })
 
-taserver.listen(3000, function () {
+sigaserver.listen(3000, function () {
   console.log('Example app listening on port 3000!')
 })
