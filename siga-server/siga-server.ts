@@ -91,14 +91,14 @@ sigaserver.put('/cadeira', function (req: express.Request, res: express.Response
 
 sigaserver.put('/cadeiraAddAluno', function (req: express.Request, res: express.Response) {
   var cadeiraPackage: CadeiraPackage = <CadeiraPackage> req.body.cadeira;
-  var usuario: Pessoa = <Pessoa> req.body.usuario;
+  var aluno: Pessoa = <Pessoa> req.body.aluno;
   var cadeira = new Cadeira();
   cadeira.copyFromDataPackage(cadeiraPackage);
   var pessoa_aux = new Pessoa();
-  pessoa_aux.copyFrom(usuario);
+  pessoa_aux.copyFrom(aluno);
   var pessoa = usuarios.getWithEmail(pessoa_aux.email);
   if (usuarios.checkAddHorario(pessoa, cadeira)) {
-    var result = cadeiras.addAluno(cadeira, usuario);
+    var result = cadeiras.addAluno(cadeira, pessoa);
     if (result) {
       pessoa.addCadeira(cadeira);
       res.send({"success": "Matricula realizada com sucesso"});
