@@ -45,7 +45,7 @@ export class PessoaService {
   }
 
   getType(): string {
-    return this.type;
+    return this.account.role;
   }
 
   getAccount(): Pessoa {
@@ -55,6 +55,7 @@ export class PessoaService {
   // LOG OUT METHOD
   logout() {
       signOut(this.auth);
+      this.account = undefined;
   };
 
   // LOGIN

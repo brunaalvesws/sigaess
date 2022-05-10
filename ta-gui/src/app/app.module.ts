@@ -47,10 +47,6 @@ import { PerfilComponent } from './perfil/perfil.component';
         component: CadastroComponent
       },
       {
-        path: 'metas',
-        component: MetasComponent
-      },
-      {
         path: "cadeiras",
         component: CadeirasComponent
       },
