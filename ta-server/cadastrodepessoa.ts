@@ -63,7 +63,7 @@ export class CadastroDePessoas {
         result = false;
       }
     });
-    return true;
+    return result;
   }
 }
 

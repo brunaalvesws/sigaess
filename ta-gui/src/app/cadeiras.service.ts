@@ -84,19 +84,21 @@ export class CadeiraService {
             )
     }
 
-    addAluno(cadeira: Cadeira, aluno: Pessoa): Observable<Cadeira> {
+    addAluno(cadeira: Cadeira, aluno: Pessoa): Observable<Cadeira | string> {
         var cadeiraAluno = new CadeiraAluno(cadeira, aluno)
         return this.http.put<any>(this.taURL + "/cadeiraAddAluno", JSON.stringify(cadeiraAluno), {headers: this.headers})
-                .pipe(
-                    retry(2),
-                    map( res => {
-                        if (res.success) {
-                            return cadeira;
-                        } else {
-                            return null;
-                        }
-                    })
-                );
+            .pipe(
+                retry(2),
+                map( res => {
+                    if (res.success) {
+                        return cadeira;
+                    } else if (res.failure) {
+                        return res.failure;
+                    } else {
+                        return null;
+                    }
+                })
+            );
     }
 }
 

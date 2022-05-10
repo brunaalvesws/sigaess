@@ -25,8 +25,8 @@ export class CadastroComponent implements OnInit {
         alert("Informações inválidas");
       }
     } else {
-      alert("Selecione um tipo de usuário")
-    }    
+      alert("Selecione um tipo de usuário");
+    }
   }
 
   ngOnInit(): void {

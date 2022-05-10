@@ -79,7 +79,14 @@ export class CadeirasComponent implements OnInit {
     if (aluno.role === "a") {
       this.cadeirasService.addAluno(cadeira, aluno).subscribe(
         ar => {
-          
+          if (ar) {
+            if (typeof ar === "object") {
+              alert("Matricula realizada com sucesso")
+            } else 
+              alert(ar)
+          } else {
+            alert("Algo deu errado, tente novamente mais tarde")
+          } 
         },
         msg => { alert(msg.message); }
       );
