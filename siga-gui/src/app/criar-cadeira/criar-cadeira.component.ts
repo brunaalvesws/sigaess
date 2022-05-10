@@ -53,6 +53,11 @@ export class CriarCadeiraComponent implements OnInit {
     }
   }
 
+  getTablePos(weekday: string, horario: number): string {
+    console.log(weekday, horario)
+    return "Teste"
+  }
+
   addHorario(cadeira: Cadeira, weekday: string, horario: number) {
     cadeira.addHorario(weekday, horario);
   }

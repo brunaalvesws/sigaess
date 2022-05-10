@@ -10,7 +10,7 @@
 <body>
   <form id="cadeira-form" class="my_form">
     <div class="input-field">
-      <input type="text" id="cadeira-name"
+      <input name="namebox" type="text" id="cadeira-name"
         [(ngModel)]="cadeira.nome_disciplina"
         [ngModelOptions]="{standalone: true}" required />
       <label for="cadeira-name">Nome da Disciplina </label>
@@ -18,7 +18,7 @@
     <div class="row">
       <label>Departamento</label>
       <div class="select1 green-text">
-        <select class="browser-default" 
+        <select name="departamentoselect" class="browser-default" 
           [(ngModel)]="cadeira.departamento_ofertante" 
           [ngModelOptions]="{standalone: true}">
           <option value="" disabled selected>
@@ -31,12 +31,12 @@
       </div>
     </div>
     <div class="row">
-      <input type="number" id="cadeira-vagas" min="1" 
+      <input name="totalvagasbox" type="number" id="cadeira-vagas" min="1" 
         [(ngModel)]="cadeira.numero_vagas" [ngModelOptions]="{standalone: true}" required />
       <label for="cadeira-vagas">Total de vagas </label>
     </div>
     <div class="row" align="center">
-      <button class="btn waves-effect waves-light" (click)="criarCadeira(cadeira)" type="submit">Finalizar
+      <button name="finishButton" class="btn waves-effect waves-light" (click)="criarCadeira(cadeira)" type="submit">Finalizar
       </button>
     </div>
   </form>
@@ -58,8 +58,8 @@
         <tr>
           <td *ngIf="h < 10" align="center">0{{h}}:00</td>
           <td *ngIf="h >= 10" align="center">{{h}}:00</td>
-          <td *ngFor="let weekday of weekdays" (click)="toggleHorario(cadeira, weekday, h)" align="center">
-            <div *ngIf="cadeira.horarios.get(weekday).has(h)" class="horario_selecionado">.</div>
+          <td id="{{weekday + h.toString()}}" *ngFor="let weekday of weekdays" (click)="toggleHorario(cadeira, weekday, h)" align="center">
+            <div id="{{'content' + weekday + h.toString()}}"  *ngIf="cadeira.horarios.get(weekday).has(h)" class="horario_selecionado">.</div>
           </td>
         </tr>
       </tbody>
