@@ -13,7 +13,7 @@ import { Pessoa } from '../../../../common/pessoa';
 export class UsuarioComponent implements OnInit {
   constructor(private _route: Router, private pessoaService: PessoaService) {}
 
-  aluno: Pessoa = new Pessoa();
+  pessoa: Pessoa = new Pessoa();
 
   async logar(a: Pessoa): Promise<void> {
     var result = this.pessoaService.login(a.email, a.senha); 

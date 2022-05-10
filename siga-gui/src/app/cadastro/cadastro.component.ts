@@ -20,7 +20,7 @@ export class CadastroComponent implements OnInit {
       var result = this.pessoaService.criar(a);
       if (await result === 'success') {
         alert("Cadastro realizado! Faça Login!");
-        this._route.navigate(['alunos']);
+        this._route.navigate(['usuario']);
       } else {
         alert("Informações inválidas");
       }

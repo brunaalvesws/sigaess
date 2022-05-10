@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { PessoaService } from './pessoa.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,14 @@ import { PessoaService } from './pessoa.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
-  constructor(private pessoaService: PessoaService) {}
+export class AppComponent implements OnInit{
+  constructor(private _route: Router, private pessoaService: PessoaService) {}
 
   logout(){
     this.pessoaService.logout()
+  }
+
+  ngOnInit(): void {
+    this._route.navigate(['usuario']);
   }
 }
