@@ -22,12 +22,13 @@ export class PerfilComponent implements OnInit {
   horarios: Array<number> = Array(15).fill(-1).map((x,i)=>i+8);
   nomeCadeira: string;
   cadeira: Cadeira = undefined;
+  alunos: string[] = [];
 
   ngOnInit(): void {
     //this.cadeiras = this.cadeirasService.getCadeirasOfUser(); //uma função que retorna um array de cadeiras contendo
     this.account = this.pessoaService.getAccount(); //firebase //ou que o professor leciona (atributo cadeiras de pessoa?)
     this.accountType = this.account.role
-    this.allCadeiras = this.cadeirasService.getCadeiras(); //isso aqui tá dando ruim
+    this.allCadeiras = this.cadeirasService.getCadeiras(); 
     this.loadUserCadeiras();
   }
 
@@ -35,6 +36,8 @@ export class PerfilComponent implements OnInit {
     for (var i = 0; i < this.allCadeiras.length; ++i) {
       if (this.allCadeiras[i].nome_disciplina == nome) {
         this.cadeira = this.allCadeiras[i].clone();
+        this.alunos = Array.from(this.cadeira.alunos)
+        console.log(this.alunos)
         return;
       }
     } 
@@ -63,7 +66,5 @@ export class PerfilComponent implements OnInit {
       console.log(result);
       this.userCadeiras = result;
     }
-    
   }
-
 }
