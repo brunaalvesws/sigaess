@@ -67,4 +67,11 @@ export class PerfilComponent implements OnInit {
       this.userCadeiras = result;
     }
   }
+
+  checkIfProf(account: Pessoa): boolean {
+    if (account.role === "p") {
+      return true;
+    }
+    return false;
+  }
 }
