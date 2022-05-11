@@ -39,6 +39,15 @@
         <tr>
           <td><label>Total de vagas: {{cadeira.numero_vagas}}</label></td>
         </tr>
+        <div *ngIf="checkIfProf(account)">
+          <br>
+          <tr>
+            <h5>Alunos</h5>
+          </tr>
+          <tr *ngFor="let a of alunos">
+            <td><label>{{a}}</label></td>
+          </tr>
+        </div>
       </table>
     </div>
   <hr>
