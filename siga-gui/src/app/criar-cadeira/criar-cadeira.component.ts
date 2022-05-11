@@ -28,6 +28,7 @@ export class CriarCadeiraComponent implements OnInit {
                           ar => {
                             if (ar) {
                               if (typeof ar === "object") {
+                                alert("Cadeira Criada com Sucesso!")
                                 this.cadeira = new Cadeira();
                                 this._route.navigate(['cadeiras']);
                               } else 

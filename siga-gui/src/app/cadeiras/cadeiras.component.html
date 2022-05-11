@@ -11,8 +11,8 @@
   <h2 *ngIf="account != undefined">Bem vindo {{account.name}}!</h2>
   <div align="center">
     <div class="menu-buttons">
-      <a  *ngIf="checkIfProf(account)" routerLink="/criarCadeira">
-        <button name="addCadeira" class="btn waves-effect waves-light" >Adicionar Nova Cadeira</button></a>
+      <a class="teste" *ngIf="checkIfProf(account)" routerLink="/criarCadeira">
+        <button name="addCadeira" class="btn waves-effect waves-light" >Adicionar Nova Cadeira </button></a>
       <a routerLink="/perfil"><button name="viewHorario" class="btn waves-effect waves-light" >Ver horários</button></a>
     </div>
     <form id="cadeira-form" class="my_form">
