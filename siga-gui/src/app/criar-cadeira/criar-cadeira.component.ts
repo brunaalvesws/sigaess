@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cadeira } from '../../../../common/cadeiras';
-import { CadeiraService } from '../cadeiras.service';
-import { PessoaService } from '../pessoa.service';
+import { CadeiraService } from '../services/cadeiras.service';
+import { PessoaService } from '../services/pessoa.service';
 import { Pessoa } from '../../../../common/pessoa';
 
 @Component({

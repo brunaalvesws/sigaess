@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgModule } from '@angular/core';
-import { PessoaService } from './pessoa.service';
+import { PessoaService } from './services/pessoa.service';
 import { Router } from '@angular/router';
 
 @Component({

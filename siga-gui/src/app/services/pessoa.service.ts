@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pessoa, PessoaPackage } from '../../../common/pessoa';
+import { Pessoa, PessoaPackage } from '../../../../common/pessoa';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut} from "@angular/fire/auth";
 import { Firestore, doc, getDoc, collection, addDoc} from '@angular/fire/firestore';

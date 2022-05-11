@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { retry, map } from 'rxjs/operators';
 
-import { Cadeira, CadeiraPackage } from "../../../common/cadeiras";
-import { Pessoa } from '../../../common/pessoa';
+import { Cadeira, CadeiraPackage } from "../../../../common/cadeiras";
+import { Pessoa } from '../../../../common/pessoa';
 
 export class CadeiraAluno {
     cadeira: CadeiraPackage;

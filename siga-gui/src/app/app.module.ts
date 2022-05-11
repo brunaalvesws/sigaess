@@ -12,9 +12,9 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UsuarioComponent } from './usuario/usuario.component';
-import { PessoaService } from './pessoa.service';
+import { PessoaService } from './services/pessoa.service';
 import { CadeirasComponent } from './cadeiras/cadeiras.component';
-import { CadeiraService} from './cadeiras.service';
+import { CadeiraService} from './services/cadeiras.service';
 import { CriarCadeiraComponent } from './criar-cadeira/criar-cadeira.component'
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { PerfilComponent } from './perfil/perfil.component';
