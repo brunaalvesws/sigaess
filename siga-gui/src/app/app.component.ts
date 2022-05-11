@@ -14,6 +14,7 @@ export class AppComponent implements OnInit{
 
   logout(){
     this.pessoaService.logout()
+    this._route.navigate(['usuario']);
   }
 
   ngOnInit(): void {

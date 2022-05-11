@@ -18,7 +18,7 @@
     <form id="cadeira-form" class="my_form">
       <div class="row">
           <div class="select1 green-text">
-            <select name="selectDepartamento" class="browser-default" 
+            <select name="selectDepartamento" class="browser-default"  id="selectDepartamento"
               [(ngModel)]="departamento" 
               (ngModelChange)="getTableLine(departamento)"
               [ngModelOptions]="{standalone: true}">
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="row">
-          <select name="selectCadeira" class="browser-default" 
+          <select name="selectCadeira" class="browser-default" id="selectCadeira"
               [(ngModel)]="nomeCadeira"
               [ngModelOptions]="{standalone: true}">
             <option name="cadeirasList" *ngFor="let d of cadeiras_departamento" value={{d.nome_disciplina}}>{{d.nome_disciplina}} </option>
