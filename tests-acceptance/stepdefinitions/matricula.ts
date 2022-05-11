@@ -9,7 +9,7 @@ When(/^Clico no botão de LogOut$/, async () => {
     await $("a[name='logout']").click();
 });
 
-When(/^Seleciono o departamento "([^\"]*)" e a cadeira "([^\"]*)$/, async (departamento, nome) => {
+When(/^Seleciono o departamento "([^\"]*)" e a cadeira "([^\"]*)"$/, async (departamento, nome) => {
     await element(by.tagName("select#selectDepartamento")).click();
     await element(by.cssContainingText('option', departamento)).click();
     await element(by.tagName("select#selectCadeira")).click();
@@ -20,7 +20,7 @@ When(/^Clico no botão Selecionar$/, async () => {
     await element(by.buttonText('Selecionar')).click();
 });
 
-When(/^Clico no botão Matricular $/, async () => {
+When(/^Clico no botão Matricular$/, async () => {
     await element(by.buttonText('Matricular')).click();
 });
 
